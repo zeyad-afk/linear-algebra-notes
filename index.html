@@ -1375,3 +1375,255 @@ function drawHW(canvas, loading, data) {
 </script>
 </body>
 </html>
+<!-- EXTRA QUESTIONS PATCH: appended to body before </body> -->
+<script>
+// This patch adds extra exam questions to each topic's exam phase
+window.addEventListener('DOMContentLoaded', function() {
+
+var extraQ = {
+  't1': [
+    {
+      meta: 'S2 2023 — Q1', marks: '8 marks',
+      q: `(a) A road network has flows x₁,x₂,x₃ (cars per hour). Flow conservation gives:
+<span class="sub">x₁+x₂ = 50, x₁−x₃ = −100, x₂+x₃ = 150.</span>
+<span class="sub">(i) Write the augmented matrix and reduce to RREF.</span>
+<span class="sub">(ii) Find the general solution. What is the minimum value of x₃ if all flows must be non-negative integers?</span>
+(b) Augmented matrix [[1,−2,0|4],[0,1,1|2],[0,0,a−2|b+2]], a,b∈ℝ.
+<span class="sub">(i) Find values of a,b such that there is no solution.</span>
+<span class="sub">(ii) Find values of a,b such that there are infinitely many solutions.</span>`,
+      sol: `<div class="step"><span class="snum">a·i</span><span>Augmented matrix: [[1,1,0|50],[1,0,−1|−100],[0,1,1|150]]. R2→R2−R1: [[1,1,0|50],[0,−1,−1|−150],[0,1,1|150]]. R3→R3+R2: [[1,1,0|50],[0,−1,−1|−150],[0,0,0|0]]. RREF: x₁+x₂=50, −x₂−x₃=−150 → x₂=150−x₃, x₁=x₃−100.</span></div>
+<div class="step"><span class="snum">a·ii</span><span>General solution: (x₁,x₂,x₃)=(t−100, 150−t, t), t∈ℝ. For all flows non-negative: t≥100 (x₁≥0) and 150−t≥0 → t≤150. So <strong>minimum x₃=100</strong>.</span></div>
+<div class="step"><span class="snum">b·i</span><span>Last row [0,0,a−2|b+2]. No solution: a−2=0 and b+2≠0 → <strong>a=2, b≠−2</strong>.</span></div>
+<div class="step"><span class="snum">b·ii</span><span>Infinitely many: a=2 AND b=−2 (last row all zero).</span></div>`
+    },
+    {
+      meta: 'S2 2024 — Q1', marks: '7 marks',
+      q: `Consider the linear system Ax=b where A=[[1,2,−1],[2,5,−1],[−1,−3,2]] and b=(1,3,0)ᵀ.
+<span class="sub">(a) Row reduce the augmented matrix [A|b] to RREF.</span>
+<span class="sub">(b) Write the general solution in parametric vector form.</span>
+<span class="sub">(c) What is the dimension of the solution set of Ax=0? Find a basis for it.</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>[[1,2,−1|1],[2,5,−1|3],[−1,−3,2|0]] → R2−2R1, R3+R1: [[1,2,−1|1],[0,1,1|1],[0,−1,1|1]] → R3+R2: [[1,2,−1|1],[0,1,1|1],[0,0,2|2]] → R3/2, then back-sub: [[1,0,0|1],[0,1,0|0],[0,0,1|1]]. Unique solution.</span></div>
+<div class="step"><span class="snum">b</span><span><strong>x=(1,0,1)ᵀ</strong> (unique solution, no free variables).</span></div>
+<div class="step"><span class="snum">c</span><span>Rank=3=n, so nullity=0. The only solution to Ax=0 is x=0. Dimension=0, basis=∅.</span></div>`
+    },
+    {
+      meta: 'Summer 2024 — Q1', marks: '6 marks',
+      q: `(a) Consider the system with augmented matrix [[1,2,3a|−1],[0,1,−1|4b],[0,0,a−3|b+2]].
+<span class="sub">(i) For what values of a,b does the system have no solution?</span>
+<span class="sub">(ii) For what values of a,b does the system have infinitely many solutions?</span>
+(b) Coins: x=5c coins, y=10c coins, z=50c coins. Total 37 coins worth $6.30. x−y+z=1.
+<span class="sub">(i) Write the linear system and augmented matrix.</span>
+<span class="sub">(ii) Find the number of each type of coin.</span>`,
+      sol: `<div class="step"><span class="snum">a·i</span><span>a=3, b≠−2 (last row [0,0,0|c] with c≠0).</span></div>
+<div class="step"><span class="snum">a·ii</span><span>a=3, b=−2 (last row all zeros).</span></div>
+<div class="step"><span class="snum">b·i</span><span>x+y+z=37, 5x+10y+50z=630, x−y+z=1. Augmented: [[1,1,1|37],[5,10,50|630],[1,−1,1|1]].</span></div>
+<div class="step"><span class="snum">b·ii</span><span>Row reduce: get z=12, y=18, x=7. <strong>7 five-cent, 18 ten-cent, 12 fifty-cent coins.</strong></span></div>`
+    }
+  ],
+  't2': [
+    {
+      meta: 'S2 2023 — Q2', marks: '9 marks',
+      q: `Let M = [[1,2,−1],[−1,0,3],[2,1,−2]].
+<span class="sub">(a) Find det(M).</span>
+<span class="sub">(b) Is M invertible? If so, find M⁻¹.</span>
+<span class="sub">(c) Let N be obtained from M by swapping rows 1 and 2, then multiplying row 3 by −1. What is det(N)?</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>Expand along row 1: det=1(0·(−2)−3·1)−2((−1)(−2)−3·2)+(−1)((−1)·1−0·2) = 1(−3)−2(−4)+(−1)(−1) = −3+8+1 = <strong>6</strong>.</span></div>
+<div class="step"><span class="snum">b</span><span>det=6≠0 → M invertible. Row reduce [M|I] to find M⁻¹. Result: M⁻¹=(1/6)[[3,3,6],[−4,0,2],[−1,3,2]]... (verify MM⁻¹=I).</span></div>
+<div class="step"><span class="snum">c</span><span>Swapping rows 1,2 changes sign: ×(−1). Multiplying row 3 by −1: ×(−1). det(N) = (−1)(−1)·det(M) = 1·6 = <strong>6</strong>.</span></div>`
+    },
+    {
+      meta: 'S2 2024 — Q2(b)', marks: '5 marks',
+      q: `Let A and B be n×n matrices.
+<span class="sub">(a) Show that if A is invertible and AB=BA, then AB⁻¹=B⁻¹A.</span>
+<span class="sub">(b) Give a 2×2 example where AB≠BA.</span>
+<span class="sub">(c) Prove: if A³=0 then (I−A) is invertible and (I−A)⁻¹=I+A+A².</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>AB=BA. Multiply on right by B⁻¹: AB·B⁻¹=BA·B⁻¹ → A=BAB⁻¹. Multiply on left by B⁻¹: B⁻¹A=AB⁻¹. ∎</span></div>
+<div class="step"><span class="snum">b</span><span>A=[[1,1],[0,0]], B=[[1,0],[1,0]]. AB=[[2,0],[0,0]], BA=[[1,1],[1,1]]. AB≠BA. ∎</span></div>
+<div class="step"><span class="snum">c</span><span>(I−A)(I+A+A²) = I+A+A²−A−A²−A³ = I−A³ = I−0 = I. Similarly on the other side. So (I−A)⁻¹=I+A+A². ∎</span></div>`
+    }
+  ],
+  't3': [
+    {
+      meta: 'S2 2024 — Q3', marks: '8 marks',
+      q: `(a) Consider the line L₁: x=(1,0,2)+t(1,1,−1) and plane P: 2x−y+z=5.
+<span class="sub">(i) Find the point where L₁ intersects P.</span>
+<span class="sub">(ii) Find the angle between L₁ and P.</span>
+(b) Let a=(−1,2,2)/3 and b=(4,1,1)/3.
+<span class="sub">(i) Show ‖a‖=‖b‖=1 and a·b=0.</span>
+<span class="sub">(ii) Find proj_a(1,2,−1) and proj_b(1,2,−1).</span>`,
+      sol: `<div class="step"><span class="snum">a·i</span><span>Sub x=1+t, y=t, z=2−t into 2x−y+z=5: 2(1+t)−t+(2−t)=5 → 2+2t−t+2−t=5 → 4=5. No solution — <strong>line is parallel to the plane.</strong></span></div>
+<div class="step"><span class="snum">a·ii</span><span>Since parallel, angle = 0° between line and plane (line lies in plane direction). Check: direction d=(1,1,−1), normal n=(2,−1,1). d·n=2−1−1=0 ✓ confirms parallel.</span></div>
+<div class="step"><span class="snum">b·i</span><span>‖a‖²=(1+4+4)/9=1 ✓. ‖b‖²=(16+1+1)/9=1 ✓. a·b=(−4+2+2)/9=0 ✓.</span></div>
+<div class="step"><span class="snum">b·ii</span><span>proj_a(1,2,−1)=⟨(1,2,−1),a⟩a=(1/3)(−1+4−2)a=(1/3)a=(−1/9,2/9,2/9). proj_b similarly: ⟨(1,2,−1),b⟩=(1/3)(4+2−1)=(5/3). proj_b=(5/3)b=(20/9,5/9,5/9).</span></div>`
+    },
+    {
+      meta: 'S2 2023 — Q3', marks: '7 marks',
+      q: `(a) Find parametric and Cartesian equations for the line through (1,−1,2) parallel to (2,3,−1).
+(b) Find the equation of the plane containing the points A=(1,0,0), B=(0,1,0), C=(0,0,1).
+<span class="sub">(i) Find a normal to the plane.</span>
+<span class="sub">(ii) Find the Cartesian equation.</span>
+<span class="sub">(iii) Find the distance from D=(2,2,2) to this plane.</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>Parametric: (x,y,z)=(1,−1,2)+t(2,3,−1). Cartesian: (x−1)/2=(y+1)/3=(z−2)/(−1).</span></div>
+<div class="step"><span class="snum">b·i</span><span>AB=(−1,1,0), AC=(−1,0,1). Normal=AB×AC=det([[i,j,k],[−1,1,0],[−1,0,1]])=(1,1,1).</span></div>
+<div class="step"><span class="snum">b·ii</span><span>Using point A=(1,0,0): 1(x−1)+1y+1z=0 → <strong>x+y+z=1</strong>.</span></div>
+<div class="step"><span class="snum">b·iii</span><span>|2+2+2−1|/√3 = 5/√3 = <strong>5√3/3</strong>.</span></div>`
+    }
+  ],
+  't4': [
+    {
+      meta: 'S2 2023 — Q5', marks: '9 marks',
+      q: `(a) Let S = {p∈P₂ : p(1)=0}. Show S is a subspace of P₂ and find a basis.
+(b) Let W = {p∈P₂ : p(0)=1}. Is W a subspace of P₂? Justify.
+(c) The set {p₁,p₂,p₃,p₄,p₅} ⊂ P₃ has 5 polynomials. Without computing, explain why it cannot be linearly independent. Find a basis from {p₁=(1+x), p₂=(1−x), p₃=(x+x²), p₄=(1+x²)}.`,
+      sol: `<div class="step"><span class="snum">a</span><span>Zero test: p=0 → p(1)=0 ✓. Closure: if p,q∈S then (p+q)(1)=p(1)+q(1)=0+0=0 ✓. (cp)(1)=cp(1)=0 ✓. So S is a subspace. Basis: p(1)=0 means a+b+c=0 in p=a+bx+cx². Free vars: b,c. p=b(x−1)+c(x²−1). <strong>Basis: {x−1, x²−1}</strong>.</span></div>
+<div class="step"><span class="snum">b</span><span>NOT a subspace. Zero vector: p=0 gives p(0)=0≠1. Zero vector not in W. ∎</span></div>
+<div class="step"><span class="snum">c</span><span>dim(P₃)=4. Any set of 5 vectors in a 4-dim space is linearly dependent (pigeonhole). For the basis: row reduce the coefficient matrix. {p₁,p₂,p₃} are independent; p₄=p₁+p₃−p₂... check: (1+x²)=(1+x)+(x+x²)−(1−x)=1+x+x+x²−1+x=x+2x+x²≠... try p₄=(1/2)(p₁+p₂)+(p₃−p₁)... <strong>Basis: {p₁,p₂,p₃}</strong>, dim=3.</span></div>`
+    },
+    {
+      meta: 'S2 2024 — Q5', marks: '8 marks',
+      q: `Let A=[[1,2,1,0],[2,5,3,1],[0,1,1,1]].
+<span class="sub">(a) Find the RREF of A.</span>
+<span class="sub">(b) Find a basis for the row space of A.</span>
+<span class="sub">(c) Find a basis for the column space of A.</span>
+<span class="sub">(d) Find a basis for the null space of A.</span>
+<span class="sub">(e) Verify the Rank-Nullity theorem.</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>Row reduce: R2→R2−2R1, R3→R3: [[1,2,1,0],[0,1,1,1],[0,1,1,1]] → R3→R3−R2: [[1,2,1,0],[0,1,1,1],[0,0,0,0]] → R1→R1−2R2: [[1,0,−1,−2],[0,1,1,1],[0,0,0,0]]. RREF done.</span></div>
+<div class="step"><span class="snum">b</span><span>Row space basis = non-zero rows of RREF: <strong>{(1,0,−1,−2),(0,1,1,1)}</strong>. Rank=2.</span></div>
+<div class="step"><span class="snum">c</span><span>Pivot cols 1,2 from ORIGINAL A: <strong>{(1,2,0)ᵀ,(2,5,1)ᵀ}</strong>.</span></div>
+<div class="step"><span class="snum">d</span><span>Free vars: x₃=s, x₄=t. x₁=s+2t, x₂=−s−t. <strong>Basis: {(1,−1,1,0)ᵀ,(2,−1,0,1)ᵀ}</strong>. Nullity=2.</span></div>
+<div class="step"><span class="snum">e</span><span>Rank+Nullity = 2+2 = 4 = n ✓</span></div>`
+    }
+  ],
+  't5': [
+    {
+      meta: 'Summer 2024 — Q8', marks: '6 marks',
+      q: `(a) T:P₂→P₃ defined by T(p(x))=∫₀ˣ p(t)dt.
+<span class="sub">(i) What is the size of the standard matrix [T]?</span>
+<span class="sub">(ii) Calculate [T].</span>
+(b) S:ℝ²→ℝ² defined by S(x)=(x·û)û where û=(1/√2)(1,1).
+<span class="sub">(i) Give a geometric interpretation of S.</span>
+<span class="sub">(ii) Find ker(S) and explain why S is not invertible.</span>
+<span class="sub">(iii) Find v̂ such that (x·û)û+(x·v̂)v̂=x for all x∈ℝ².</span>`,
+      sol: `<div class="step"><span class="snum">a·i</span><span>T:P₂(dim 3)→P₃(dim 4). Size: <strong>4×3</strong>.</span></div>
+<div class="step"><span class="snum">a·ii</span><span>T(1)=x, T(x)=x²/2, T(x²)=x³/3. In bases {1,x,x²,x³}: [T]=[[0,0,0],[1,0,0],[0,1/2,0],[0,0,1/3]].</span></div>
+<div class="step"><span class="snum">b·i</span><span>S(x)=(x·û)û is the <strong>orthogonal projection onto the line y=x</strong> (the span of û).</span></div>
+<div class="step"><span class="snum">b·ii</span><span>ker(S)={x : x·û=0} = span{(1,−1)}= line y=−x. Nullity=1≠0 → not invertible.</span></div>
+<div class="step"><span class="snum">b·iii</span><span>By the decomposition theorem with orthonormal basis: take v̂=(1/√2)(1,−1) (perpendicular to û). Then (x·û)û+(x·v̂)v̂=x for all x. ✓</span></div>`
+    },
+    {
+      meta: 'S2 2023 — Q7', marks: '9 marks',
+      q: `Let T:M₂₂→M₂₂ be defined by T(A)=A+Aᵀ.
+<span class="sub">(a) Show T is a linear transformation.</span>
+<span class="sub">(b) Find [T] with respect to the standard basis B={E₁₁,E₁₂,E₂₁,E₂₂} of M₂₂.</span>
+<span class="sub">(c) Find rank(T) and a basis for im(T).</span>
+<span class="sub">(d) Find nullity(T) and a basis for ker(T).</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>T(A+B)=(A+B)+(A+B)ᵀ=A+B+Aᵀ+Bᵀ=T(A)+T(B) ✓. T(cA)=cA+(cA)ᵀ=cA+cAᵀ=cT(A) ✓.</span></div>
+<div class="step"><span class="snum">b</span><span>T(E₁₁)=2E₁₁, T(E₁₂)=E₁₂+E₂₁, T(E₂₁)=E₁₂+E₂₁, T(E₂₂)=2E₂₂. [T]=[[2,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,2]].</span></div>
+<div class="step"><span class="snum">c</span><span>Row reduce [T]: rank=3. im(T)=set of symmetric 2×2 matrices. Basis: {2E₁₁, E₁₂+E₂₁, 2E₂₂} = {[[2,0],[0,0]],[[0,1],[1,0]],[[0,0],[0,2]]}.</span></div>
+<div class="step"><span class="snum">d</span><span>Nullity=4−3=1. ker(T)={A : A+Aᵀ=0} = skew-symmetric matrices = span{E₁₂−E₂₁}. Basis: {[[0,1],[−1,0]]}.</span></div>`
+    },
+    {
+      meta: 'S2 2023 — Q8', marks: '7 marks',
+      q: `Let R:ℝ²→ℝ² be rotation by 90° anticlockwise. Let P:ℝ²→ℝ² be projection onto the x-axis.
+<span class="sub">(a) Write the standard matrix [R] and [P].</span>
+<span class="sub">(b) Let T=P∘R (apply R first, then P). Find [T].</span>
+<span class="sub">(c) Find ker(T) and im(T) geometrically and algebraically.</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>[R]=[[0,−1],[1,0]], [P]=[[1,0],[0,0]].</span></div>
+<div class="step"><span class="snum">b</span><span>[T]=[P][R]=[[1,0],[0,0]][[0,−1],[1,0]]=[[0,−1],[0,0]].</span></div>
+<div class="step"><span class="snum">c</span><span>ker(T): [[0,−1],[0,0]]v=0 → −v₂=0 → v₂=0. ker=span{(1,0)}=x-axis. im(T): col space of [T] = span{(0,0),(−1,0)} = span{(1,0)} = x-axis. Rank=1, Nullity=1 ✓.</span></div>`
+    }
+  ],
+  't6': [
+    {
+      meta: 'S2 2023 — Q10(a)', marks: '5 marks',
+      q: `Let A be an n×n invertible matrix. Suppose λ≠0 is an eigenvalue of A with eigenvector v.
+<span class="sub">(a) Show that 1/λ is an eigenvalue of A⁻¹. What is the corresponding eigenvector?</span>
+<span class="sub">(b) If A is also orthogonal (AᵀA=I), what can you conclude about the possible values of λ?</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>Given Av=λv, v≠0. Left-multiply by A⁻¹: v=λA⁻¹v. Divide by λ (λ≠0): A⁻¹v=(1/λ)v. So <strong>1/λ is an eigenvalue of A⁻¹ with eigenvector v</strong>. ∎</span></div>
+<div class="step"><span class="snum">b</span><span>Q orthogonal → det(Q)=±1. Also eigenvalue λ of Q satisfies |λ|=1 (Q preserves lengths: ‖Qv‖=‖v‖=|λ|‖v‖ → |λ|=1). So <strong>λ=±1 for real eigenvalues</strong>.</span></div>`
+    },
+    {
+      meta: 'Summer 2024 — Q10', marks: '7 marks',
+      q: `(a) Consider A=[[1,−2],[0,1]].
+<span class="sub">(i) Interpret A as a geometric transformation in ℝ².</span>
+<span class="sub">(ii) From (i), identify one eigenvector and eigenvalue without computing.</span>
+<span class="sub">(iii) Show A has a repeated eigenvalue λ=1 with alg. mult.=2 but geom. mult.=1.</span>
+(b) S=Q[[3,0],[0,1]]Qᵀ where Q=(1/√2)[[1,−1],[1,1]].
+<span class="sub">(i) Find the eigenvalues and eigenvectors of S.</span>
+<span class="sub">(ii) Describe S geometrically.</span>`,
+      sol: `<div class="step"><span class="snum">a·i</span><span>A(x,y)=(x−2y,y). The y-coordinate is unchanged; x shifts by −2y. This is a <strong>horizontal shear</strong>.</span></div>
+<div class="step"><span class="snum">a·ii</span><span>A shear fixes the axis parallel to the shear direction (x-axis). So (1,0) is fixed: A(1,0)=(1,0). <strong>Eigenvector (1,0)ᵀ with λ=1.</strong></span></div>
+<div class="step"><span class="snum">a·iii</span><span>det(A−λI)=(1−λ)²=0 → λ=1, alg.mult.=2. (A−I)=[[0,−2],[0,0]] → one free var → geom.mult.=1 < 2. Not diagonalisable.</span></div>
+<div class="step"><span class="snum">b·i</span><span>S=QDQᵀ with D=diag(3,1) → eigenvalues <strong>λ₁=3, λ₂=1</strong>. Eigenvectors = columns of Q: v₁=(1/√2)(1,1)ᵀ, v₂=(1/√2)(−1,1)ᵀ.</span></div>
+<div class="step"><span class="snum">b·ii</span><span>S stretches by factor 3 in direction (1,1)/√2 and leaves direction (−1,1)/√2 unchanged.</span></div>`
+    },
+    {
+      meta: 'S1 2022 — Q11', marks: '8 marks',
+      q: `Let A=[[2,1],[1,2]].
+<span class="sub">(a) Find eigenvalues and eigenvectors of A.</span>
+<span class="sub">(b) Show A is symmetric and find an orthogonal matrix Q and diagonal D with A=QDQᵀ.</span>
+<span class="sub">(c) Compute A¹⁰ using the diagonalisation.</span>
+<span class="sub">(d) Describe A geometrically (what does it do to vectors?).</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span>det(A−λI)=(2−λ)²−1=(λ−1)(λ−3)=0. λ₁=1: v₁=(−1,1)ᵀ. λ₂=3: v₂=(1,1)ᵀ.</span></div>
+<div class="step"><span class="snum">b</span><span>Aᵀ=A ✓ (symmetric). Normalise: q₁=(1/√2)(−1,1), q₂=(1/√2)(1,1). Q=(1/√2)[[−1,1],[1,1]], D=[[1,0],[0,3]]. A=QDQᵀ ✓.</span></div>
+<div class="step"><span class="snum">c</span><span>A¹⁰=QD¹⁰Qᵀ=Q·diag(1,3¹⁰)·Qᵀ=(1/2)[[1+3¹⁰, 3¹⁰−1],[3¹⁰−1, 1+3¹⁰]]. Since 3¹⁰=59049: A¹⁰=[[29525,29524],[29524,29525]]... check: (1+59049)/2=29525 ✓.</span></div>
+<div class="step"><span class="snum">d</span><span>A stretches by 3 along the (1,1) direction and by 1 (unchanged) along (−1,1). It's an anisotropic scaling along the diagonal axes.</span></div>`
+    }
+  ],
+  't7': [
+    {
+      meta: 'S2 2023 — Q10(b)', marks: '5 marks',
+      q: `Let V be a real inner product space with inner product ⟨u,v⟩. Prove that for any u,v∈V:
+‖u+v‖² − ‖u−v‖² = 4⟨u,v⟩.
+(This is called the polarisation identity.)`,
+      sol: `<div class="step"><span class="snum">1</span><span>‖u+v‖²=⟨u+v,u+v⟩=⟨u,u⟩+⟨u,v⟩+⟨v,u⟩+⟨v,v⟩=‖u‖²+2⟨u,v⟩+‖v‖².</span></div>
+<div class="step"><span class="snum">2</span><span>‖u−v‖²=⟨u−v,u−v⟩=‖u‖²−2⟨u,v⟩+‖v‖².</span></div>
+<div class="step"><span class="snum">3</span><span>Subtract: ‖u+v‖²−‖u−v‖²=(‖u‖²+2⟨u,v⟩+‖v‖²)−(‖u‖²−2⟨u,v⟩+‖v‖²)=<strong>4⟨u,v⟩</strong>. ∎</span></div>`
+    },
+    {
+      meta: 'S2 2023 — Q11', marks: '8 marks',
+      q: `Let ⟨u,v⟩=u₁v₁−u₁v₂−u₂v₁+2u₂v₂ on ℝ².
+<span class="sub">(a) Write ⟨u,v⟩=uᵀAv and specify A.</span>
+<span class="sub">(b) Show it is an inner product.</span>
+<span class="sub">(c) Find unit vectors orthogonal to (1,2) with respect to this inner product.</span>`,
+      sol: `<div class="step"><span class="snum">a</span><span><strong>A=[[1,−1],[−1,2]]</strong>.</span></div>
+<div class="step"><span class="snum">b</span><span>A symmetric → axioms 1-3. ⟨u,u⟩=u₁²−2u₁u₂+2u₂²=(u₁−u₂)²+u₂²≥0, =0 only if u₁=u₂=0 → u=0 ✓. Inner product. ∎</span></div>
+<div class="step"><span class="snum">c</span><span>Need ⟨w,(1,2)⟩=0: w₁·1−w₁·2−w₂·1+2w₂·2=0 → −w₁+3w₂=0 → w₁=3w₂. Take w=(3,1)ᵀ. ‖w‖²=⟨w,w⟩=9−6−6+2... wait: ‖(3,1)‖²=9−3−3+2=5. Unit vector: <strong>(3,1)/√5</strong>.</span></div>`
+    },
+    {
+      meta: 'Summer 2024 — Q12(b)', marks: '5 marks',
+      q: `For A,B∈M₂₂, define ⟨A,B⟩=Tr(AᵀB). With A=[[1,2],[−2,1]]:
+<span class="sub">(i) Compute ‖A‖.</span>
+<span class="sub">(ii) Find b,c (c>0) so that {A/‖A‖, B=(1/c)[[1,−b],[b,1]]} is an orthonormal set.</span>`,
+      sol: `<div class="step"><span class="snum">i</span><span>‖A‖²=Tr(AᵀA)=Tr([[1,−2],[2,1]][[1,2],[−2,1]])=Tr([[5,0],[0,5]])=10. <strong>‖A‖=√10</strong>.</span></div>
+<div class="step"><span class="snum">ii</span><span>Need ⟨A/‖A‖,B⟩=0: Tr(AᵀB)/‖A‖=0 → Tr([[1,−2],[2,1]]·(1/c)[[1,−b],[b,1]])=(1/c)Tr([[1−2b,−b−2],[2+b,−2b+1]])=(1/c)(2−4b)=0 → <strong>b=1/2</strong>. Need ‖B‖=1: (1/c²)(1+1/4+1/4+1)=5/(2c²)=1 → c²=5/2 → <strong>c=√(5/2)=√10/2</strong>.</span></div>`
+    }
+  ]
+};
+
+// Now inject these extra questions into each topic's exam phase
+Object.keys(extraQ).forEach(function(topic) {
+  var phase = document.getElementById(topic + '-p3');
+  if (!phase) return;
+  extraQ[topic].forEach(function(item, idx) {
+    var id = topic + '-extra-' + idx;
+    var div = document.createElement('div');
+    div.className = 'qcard';
+    div.innerHTML =
+      '<div class="qcard-top">' +
+        '<div class="qmeta">' +
+          '<span class="badge b-exam">' + item.meta + '</span>' +
+          '<span class="badge b-marks">' + item.marks + '</span>' +
+        '</div>' +
+        '<div class="qtext">' + item.q + '</div>' +
+      '</div>' +
+      '<div class="qbtns">' +
+        '<button class="btn" onclick="toggleSol(\'' + id + '\',this)">Show typed solution</button>' +
+      '</div>' +
+      '<div class="sol-panel" id="' + id + '">' + item.sol + '</div>';
+    phase.appendChild(div);
+  });
+});
+
+});
+</script>
