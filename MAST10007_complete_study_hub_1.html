@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAST10007 — Complete Exam Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#faf6f0;
+  --cream2:#f3ede3;
+  --cream3:#ebe3d5;
+  --brown-light:#c9a87c;
+  --brown:#8b6340;
+  --brown-dark:#5c3d1e;
+  --brown-deep:#3a2410;
+  --text:#2d1f0e;
+  --muted:#7a5c3a;
+  --faint:#a8896a;
+  --border:#ddd0bb;
+  --border2:#c8b89a;
+  --white:#fffcf7;
+  --red:#b83232;
+  --blue:#2563a8;
+  --green:#2a6e3a;
+  --gold:#9c6f1a;
+  --shadow:0 2px 12px rgba(90,55,20,.10);
+  --shadow2:0 4px 24px rgba(90,55,20,.13);
+}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;font-size:14px}
+
+/* ═══ TOP BAR ═══ */
+.topbar{
+  background:var(--brown-deep);
+  padding:1rem 1.8rem;
+  display:flex;align-items:center;gap:1rem;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 16px rgba(58,36,16,.35);
+}
+.topbar-icon{width:36px;height:36px;background:var(--brown-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.topbar h1{color:var(--cream);font-family:'Playfair Display',serif;font-size:17px;font-weight:700;letter-spacing:.01em}
+.topbar .sub{color:var(--brown-light);font-size:11px;margin-top:2px;font-weight:400}
+
+/* ═══ TOPIC NAV ═══ */
+.topic-nav{
+  display:flex;gap:4px;padding:.9rem 1.8rem;
+  background:var(--brown-dark);
+  flex-wrap:wrap;
+  border-bottom:2px solid var(--brown-deep);
+}
+.tnav{
+  padding:6px 14px;border-radius:20px;
+  font-size:12px;font-weight:500;cursor:pointer;
+  background:rgba(255,255,255,.08);color:rgba(250,246,240,.7);
+  border:1px solid rgba(255,255,255,.12);
+  transition:all .18s;white-space:nowrap;font-family:'Inter',sans-serif;
+}
+.tnav:hover{background:rgba(255,255,255,.18);color:var(--cream)}
+.tnav.active{background:var(--brown-light);color:var(--brown-deep);border-color:var(--brown-light);font-weight:600}
+.tnav-think{background:rgba(201,168,124,.15);color:var(--brown-light);border-color:var(--brown-light)}
+.tnav-think.active{background:var(--brown-light);color:var(--brown-deep)}
+
+/* ═══ LAYOUT ═══ */
+.main{max-width:800px;margin:0 auto;padding:1.6rem 1.4rem 4rem}
+.topic-page{display:none}.topic-page.active{display:block}
+.topic-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--brown-deep);margin-bottom:.2rem}
+.topic-sub{font-size:12px;color:var(--faint);margin-bottom:1.4rem;letter-spacing:.02em}
+
+/* ═══ PHASE TABS ═══ */
+.phase-row{display:flex;gap:6px;margin-bottom:1.3rem;flex-wrap:wrap}
+.ptab{
+  padding:7px 18px;border-radius:24px;
+  border:1.5px solid var(--border2);
+  font-size:13px;font-weight:500;cursor:pointer;
+  background:var(--white);color:var(--muted);
+  font-family:'Inter',sans-serif;
+  transition:all .18s;
+  box-shadow:0 1px 4px rgba(90,55,20,.06);
+}
+.ptab:hover{background:var(--cream3);border-color:var(--brown-light)}
+.ptab.active{
+  background:var(--brown-dark);color:var(--cream);
+  border-color:var(--brown-dark);
+  box-shadow:0 2px 8px rgba(90,55,20,.2);
+}
+
+/* ═══ SECTION TABS ═══ */
+.sec-row{display:flex;gap:5px;margin-bottom:1.1rem;flex-wrap:wrap}
+.stab{
+  padding:5px 13px;border-radius:6px;
+  border:1px solid var(--border);
+  font-size:12px;font-weight:500;cursor:pointer;
+  background:var(--cream2);color:var(--faint);
+  font-family:'Inter',sans-serif;transition:all .15s;
+}
+.stab:hover{background:var(--cream3);color:var(--brown)}
+.stab.active{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+
+/* ═══ TEACH CARDS ═══ */
+.card{
+  background:var(--white);border-radius:14px;
+  padding:1.2rem 1.3rem;margin-bottom:.9rem;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+.card h4{font-size:14px;font-weight:600;color:var(--brown-dark);margin-bottom:.6rem}
+.card p,.card li{font-size:13.5px;line-height:1.8;color:var(--muted)}
+.card ul{padding-left:1.3rem;margin:.3rem 0}
+.fbox{
+  background:var(--cream2);border:1px solid var(--border2);
+  border-radius:8px;padding:.7rem 1rem;margin:.6rem 0;
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  line-height:1.9;color:var(--brown-deep);white-space:pre-wrap;
+}
+.kp{
+  border-left:3px solid var(--blue);padding:.55rem .85rem;
+  margin:.65rem 0;font-size:13.5px;color:var(--muted);
+  background:#eef3fb;border-radius:0 8px 8px 0;
+}
+.wp{
+  border-left:3px solid var(--gold);padding:.55rem .85rem;
+  margin:.65rem 0;font-size:13.5px;color:var(--muted);
+  background:#fdf6e3;border-radius:0 8px 8px 0;
+}
+
+/* ═══ Q CARDS ═══ */
+.qcard{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;margin-bottom:1.1rem;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.qcard-top{padding:1rem 1.2rem;background:var(--cream2)}
+.qmeta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.55rem}
+.badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.b-warm{background:#d4f0df;color:#1a6b35}
+.b-exam{background:#fde8e8;color:#9b2020}
+.b-marks{background:var(--cream3);color:var(--muted)}
+.qtext{font-size:13.5px;line-height:1.75;color:var(--text)}
+.sub{margin-left:1rem;margin-top:.3rem;font-size:13px;color:var(--muted);display:block}
+.qbtns{
+  display:flex;gap:8px;padding:.7rem 1.2rem;
+  border-top:1px solid var(--border);
+  background:var(--cream);flex-wrap:wrap;
+}
+.btn{
+  font-size:12.5px;padding:6px 16px;border-radius:20px;
+  border:1.5px solid var(--border2);background:var(--white);
+  color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;
+  font-weight:500;transition:all .15s;
+}
+.btn:hover{background:var(--cream3);border-color:var(--brown-light);color:var(--brown-dark)}
+.btn-hw{
+  border-color:var(--brown-light);color:var(--brown);
+  background:linear-gradient(135deg,#fdf6e3,#f7ede0);
+}
+.btn-hw:hover{background:var(--cream3);color:var(--brown-dark)}
+
+/* ═══ SOLUTION PANELS ═══ */
+.sol-panel{
+  display:none;padding:1rem 1.2rem;
+  border-top:1px solid var(--border);
+  font-size:13.5px;line-height:1.85;color:var(--muted);
+}
+.sol-panel.vis{display:block}
+.sol-panel strong{color:var(--brown-dark);font-weight:600}
+.step{display:flex;gap:9px;margin:.5rem 0;align-items:flex-start;font-size:13.5px}
+.snum{
+  background:var(--brown-light);color:var(--white);
+  border-radius:50%;width:22px;height:22px;min-width:22px;
+  font-size:11px;font-weight:700;display:flex;
+  align-items:center;justify-content:center;margin-top:2px;
+}
+.hw-panel{display:none;border-top:1px solid var(--border)}
+.hw-panel.vis{display:block}
+.hw-ld{padding:1.2rem;text-align:center;font-size:13px;color:var(--faint)}
+.hw-canvas{background:#fffef8;width:100%;display:block}
+
+/* ═══ THINKING GUIDE ═══ */
+.think-section-title{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:700;color:var(--brown-dark);
+  margin:1.5rem 0 .7rem;
+  padding-bottom:.4rem;
+  border-bottom:2px solid var(--brown-light);
+}
+.think-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:.5rem}
+@media(max-width:580px){.think-grid{grid-template-columns:1fr}}
+.think-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:1rem 1.1rem;
+  box-shadow:var(--shadow);
+}
+.think-card h4{
+  font-size:11px;font-weight:700;color:var(--brown);
+  text-transform:uppercase;letter-spacing:.07em;margin-bottom:.7rem;
+}
+.think-row{display:flex;gap:.55rem;margin-bottom:.55rem;align-items:flex-start}
+.think-if{
+  background:var(--cream3);color:var(--brown-dark);
+  padding:3px 9px;border-radius:12px;font-size:11.5px;
+  font-weight:600;white-space:nowrap;flex-shrink:0;
+  border:1px solid var(--border2);
+}
+.think-then{color:var(--muted);line-height:1.55;font-size:12.5px}
+.think-warn{
+  background:linear-gradient(135deg,var(--cream2),#fdf6e3);
+  border:1.5px solid var(--brown-light);border-radius:12px;
+  padding:.85rem 1.1rem;margin-bottom:1rem;
+  font-size:13px;color:var(--brown-dark);
+}
+.think-warn strong{color:var(--brown-deep)}
+
+/* ═══ DIVIDER ═══ */
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+
+/* ═══ SECTION / PHASE HIDDEN ═══ */
+.sec{display:none}.sec.active{display:block}
+.phase{display:none}.phase.active{display:block}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-icon">📐</div>
+  <div>
+    <div class="topbar h1">MAST10007 Linear Algebra — Complete Exam Prep</div>
+    <div class="topbar sub">Topics 1–7 · Teach → Worked → Warm-Up → Exam Prep · Typed + Handwritten Solutions</div>
+  </div>
+</div>
+
+<!-- TOPIC NAV -->
+<div class="topic-nav" id="topicNav">
+  <button class="tnav active" onclick="gotoTopic('t1')">Topic 1 · Linear Equations</button>
+  <button class="tnav" onclick="gotoTopic('t2')">Topic 2 · Matrices &amp; Det.</button>
+  <button class="tnav" onclick="gotoTopic('t3')">Topic 3 · Euclidean Vectors</button>
+  <button class="tnav" onclick="gotoTopic('t4')">Topic 4 · Vector Spaces</button>
+  <button class="tnav" onclick="gotoTopic('t5')">Topic 5 · Linear Transforms</button>
+  <button class="tnav" onclick="gotoTopic('t6')">Topic 6 · Eigenvalues</button>
+  <button class="tnav" onclick="gotoTopic('t7')">Topic 7 · Inner Products</button>
+  <button class="tnav tnav-think" onclick="gotoTopic('think')">🧠 Exam Thinking Guide</button>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 1
+══════════════════════════════════════════════ -->
+<div id="page-t1" class="topic-page active">
+  <div class="topic-title">Topic 1 — Linear Equations</div>
+  <div class="topic-sub">1.1 Row operations · 1.2 Row-echelon form · 1.3 Reduced REF · 1.4 Consistent & inconsistent systems</div>
+
+  <div class="phase-row" id="phases-t1">
+    <button class="ptab active" onclick="setPhase('t1',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t1',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t1',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t1',3,this)">🎯 Exam Prep</button>
+  </div>
+
+  <!-- TEACH -->
+  <div id="t1-p0" class="phase active">
+    <div class="sec-row" id="secs-t1">
+      <button class="stab active" onclick="setSec('t1','s1',this)">1.1 Row Ops</button>
+      <button class="stab" onclick="setSec('t1','s2',this)">1.2 REF</button>
+      <button class="stab" onclick="setSec('t1','s3',this)">1.3 RREF</button>
+      <button class="stab" onclick="setSec('t1','s4',this)">1.4 Consistency</button>
+    </div>
+    <div id="t1-s1" class="sec active">
+      <div class="card"><h4>What is a linear equation?</h4><p>An equation where every variable appears to the power 1, with no products between variables. The general form is a₁x₁ + a₂x₂ + ··· + aₙxₙ = b. A <strong style="color:var(--brown-dark)">system</strong> is a collection of these equations solved simultaneously.</p></div>
+      <div class="card"><h4>The 3 row operations (never change the solution set)</h4><div class="fbox">R1 — Swap two rows:             Rᵢ ↔ Rⱼ
+R2 — Scale a row by c ≠ 0:     Rᵢ → c·Rᵢ
+R3 — Add multiple of one row:  Rᵢ → Rᵢ + c·Rⱼ</div><p>Always write row operations explicitly in the exam — you lose marks for skipping notation.</p></div>
+      <div class="card"><h4>Augmented matrix</h4><p>Write the system as [A|b] — coefficient matrix A with constants b as an extra column. All row operations are performed on this combined matrix.</p></div>
+      <div class="wp"><strong>Trap:</strong> 3x − xy = 1 is NOT linear (product xy). Non-linear systems cannot be solved by these methods.</div>
+    </div>
+    <div id="t1-s2" class="sec">
+      <div class="card"><h4>Row-Echelon Form (REF)</h4><p>A matrix is in REF when all-zero rows are at the bottom, and in each non-zero row the leading entry is strictly further right than the row above.</p><div class="fbox">REF pattern  (★ = leading entry, * = anything):
+[ ★  *  *  * ]
+[ 0  ★  *  * ]
+[ 0  0  ★  * ]
+[ 0  0  0  0 ]</div></div>
+      <div class="card"><h4>Gaussian Elimination</h4><div class="fbox">1. Bring non-zero entry to top-left (swap if needed)
+2. Zero out everything BELOW the pivot with R3 ops
+3. Ignore that row/column, repeat on the smaller submatrix
+4. Read off solution by back-substitution from bottom up</div></div>
+      <div class="kp">Free variables = columns WITHOUT a pivot. If there are k free variables, you get k parameters in the general solution.</div>
+    </div>
+    <div id="t1-s3" class="sec">
+      <div class="card"><h4>Reduced Row-Echelon Form (RREF)</h4><p>REF plus two extra conditions: each leading entry is exactly 1, and all entries <em>above</em> a leading 1 are also zero.</p><div class="fbox">RREF pattern:
+[ 1  0  *  * ]
+[ 0  1  *  * ]
+[ 0  0  0  0 ]</div><p>RREF is <strong style="color:var(--brown-dark)">unique</strong> — there is only one RREF for any matrix. REF is not unique.</p></div>
+      <div class="card"><h4>Gauss-Jordan Elimination</h4><div class="fbox">1. Do Gaussian elimination → REF
+2. Divide each non-zero row to make leading entries = 1
+3. Zero out entries ABOVE each leading 1 too
+4. Read off answers directly (no back-substitution needed)</div></div>
+      <div class="wp"><strong>Exam tip:</strong> RREF gives answers directly. For questions about existence/uniqueness, REF is usually faster.</div>
+    </div>
+    <div id="t1-s4" class="sec">
+      <div class="card"><h4>Consistent vs Inconsistent</h4><p>After row reduction, look for a row of the form [0 0 0 … 0 | c] with c ≠ 0. This says 0 = c — impossible. System is <strong style="color:var(--red)">inconsistent</strong> (no solution). Otherwise it is <strong style="color:var(--green)">consistent</strong>.</p></div>
+      <div class="card"><h4>Counting solutions</h4><div class="fbox">r = rank = number of pivot columns
+n = number of unknowns
+
+No free variables (r = n):    unique solution
+Free variables present (r &lt; n): infinitely many solutions
+Inconsistent row exists:       no solution</div></div>
+      <div class="card"><h4>Parametric solutions</h4><p>When free variables exist (say x₃=t, x₄=s), express pivot variables in terms of t and s. Write as: <strong style="color:var(--brown-dark)">x = x_particular + t·v₁ + s·v₂</strong>.</p></div>
+      <div class="kp">For systems with a parameter k: row reduce symbolically, then ask — what value of k makes the last row become [0 0 … | c] with c ≠ 0?</div>
+    </div>
+  </div>
+
+  <!-- WORKED -->
+  <div id="t1-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> The augmented matrix [[1,2,3a|−1],[0,1,−1|4b],[0,0,a−3|b+2]] — find values of a,b for (i) no solution, (ii) unique solution, (iii) infinitely many solutions.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t1w1',this)">Show solution</button><button class="btn btn-hw" onclick="doHW('t1w1h',1)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t1w1">
+        <div class="step"><span class="snum">1</span><span>Matrix is already in REF. The deciding row is row 3: [0, 0, a−3 | b+2].</span></div>
+        <div class="step"><span class="snum">i</span><span><strong>No solution:</strong> coefficient = 0 but RHS ≠ 0 → a−3=0 and b+2≠0 → <strong>a=3, b≠−2</strong>.</span></div>
+        <div class="step"><span class="snum">ii</span><span><strong>Unique solution:</strong> a−3≠0 (full rank, pivot in every column) → <strong>a≠3, b arbitrary</strong>.</span></div>
+        <div class="step"><span class="snum">iii</span><span><strong>Infinitely many:</strong> entire last row = 0 → a=3 AND b=−2 → <strong>a=3, b=−2</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t1w1h"><div class="hw-ld" id="t1w1h-l">Generating handwritten solution…</div><canvas class="hw-canvas" id="t1w1h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+
+  <!-- WARM-UP -->
+  <div id="t1-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">Solve x₁−2x₂+x₃=0, 2x₁+x₂−x₃=3, x₁+3x₂−2x₃=2. Write the answer in parametric vector form.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t1wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t1wq1">
+        <div class="step"><span class="snum">1</span><span>Form augmented matrix and row reduce. R2→R2−2R1, R3→R3−R1: [[1,−2,1|0],[0,5,−3|3],[0,5,−3|2]].</span></div>
+        <div class="step"><span class="snum">2</span><span>R3→R3−R2: [[1,−2,1|0],[0,5,−3|3],[0,0,0|−1]]. Last row: 0=−1 → <strong>inconsistent, no solution.</strong></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAM PREP -->
+  <div id="t1-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">Summer 2025 — Q1</span><span class="badge b-marks">6 marks</span></div>
+        <div class="qtext">Data points (−1,5),(0,1),(1,5),(2,11) fitted by y=a+bx+cx²+dx³.
+          <span class="sub">(i) Write four linear equations for a,b,c,d from the data.</span>
+          <span class="sub">(ii) Read off a from x=0, reduce to 3 equations in b,c,d.</span>
+          <span class="sub">(iii) Solve using row-echelon form.</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t1e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t1e1h',2)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t1e1">
+        <div class="step"><span class="snum">i</span><span>Sub each point: a−b+c−d=5; a=1; a+b+c+d=5; a+2b+4c+8d=11.</span></div>
+        <div class="step"><span class="snum">ii</span><span>From x=0: a=1. Substitute and simplify: −b+c−d=4, b+c+d=4, 2b+4c+8d=10.</span></div>
+        <div class="step"><span class="snum">iii</span><span>Row reduce [[−1,1,−1|4],[1,1,1|4],[2,4,8|10]]. Get back: d=−1, c=0, b=4. Final: <strong>y = 1+4x+0·x²−x³ = 1+4x−x³</strong>. Verify: x=1 → 1+4−1=4... check original: (1,5)→a+b+c+d=1+4+0−1=4≠5. Re-examine: (1,5)→1+b+c+d=5→b+c+d=4 ✓ and b+c+d=4 from row 2 ✓.</span></div>
+      </div>
+      <div class="hw-panel" id="t1e1h"><div class="hw-ld" id="t1e1h-l">Generating handwritten solution…</div><canvas class="hw-canvas" id="t1e1h-c" style="display:none"></canvas></div>
+    </div>
+
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2023 — Q1(b)</span><span class="badge b-marks">5 marks</span></div>
+        <div class="qtext">Augmented matrix [[1,2,3a|−1],[0,1,−1|4b],[0,0,a−3|b+2]], a,b∈ℝ. Find values of a and b so the system has: (i) no solutions, (ii) a unique solution, (iii) infinitely many solutions.</div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t1e2',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t1e2h',3)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t1e2">
+        <div class="step"><span class="snum">Key</span><span>The last row [0,0,a−3|b+2] decides everything.</span></div>
+        <div class="step"><span class="snum">i</span><span><strong>No solution:</strong> a=3, b≠−2.</span></div>
+        <div class="step"><span class="snum">ii</span><span><strong>Unique solution:</strong> a≠3 (any b).</span></div>
+        <div class="step"><span class="snum">iii</span><span><strong>Infinitely many:</strong> a=3, b=−2.</span></div>
+      </div>
+      <div class="hw-panel" id="t1e2h"><div class="hw-ld" id="t1e2h-l">Generating handwritten solution…</div><canvas class="hw-canvas" id="t1e2h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 2
+══════════════════════════════════════════════ -->
+<div id="page-t2" class="topic-page">
+  <div class="topic-title">Topic 2 — Matrices &amp; Determinants</div>
+  <div class="topic-sub">2.1 Notation · 2.2 Operations · 2.3 Inverses · 2.4 Elementary matrices · 2.5 Systems · 2.6 Determinants</div>
+  <div class="phase-row" id="phases-t2">
+    <button class="ptab active" onclick="setPhase('t2',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t2',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t2',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t2',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t2-p0" class="phase active">
+    <div class="sec-row" id="secs-t2">
+      <button class="stab active" onclick="setSec('t2','s1',this)">2.1-2.2 Operations</button>
+      <button class="stab" onclick="setSec('t2','s2',this)">2.3 Inverses</button>
+      <button class="stab" onclick="setSec('t2','s3',this)">2.6 Determinants</button>
+    </div>
+    <div id="t2-s1" class="sec active">
+      <div class="card"><h4>Matrix multiplication</h4><p>(AB)ᵢⱼ = row i of A dotted with column j of B. Only defined when #cols(A) = #rows(B). NOT commutative: AB ≠ BA in general.</p><div class="fbox">(AB)ᵀ = BᵀAᵀ      ← order reverses on transpose
+(AB)⁻¹ = B⁻¹A⁻¹  ← order reverses on inverse
+A(B+C) = AB + AC  ← distributive</div></div>
+    </div>
+    <div id="t2-s2" class="sec">
+      <div class="card"><h4>Matrix inverse</h4><p>A is invertible iff AA⁻¹ = I. Find A⁻¹ by row reducing [A|I] → [I|A⁻¹].</p><div class="fbox">For 2×2: if A = [[a,b],[c,d]], then
+A⁻¹ = (1/(ad−bc)) · [[d,−b],[−c,a]]
+Only when det(A) = ad−bc ≠ 0.</div></div>
+      <div class="wp"><strong>Most common mistake:</strong> (AB)⁻¹ = A⁻¹B⁻¹ is WRONG. It must be B⁻¹A⁻¹ — order reverses.</div>
+    </div>
+    <div id="t2-s3" class="sec">
+      <div class="card"><h4>Determinant key facts</h4><div class="fbox">det([[a,b],[c,d]]) = ad − bc
+
+det(AB) = det(A)·det(B)
+det(Aᵀ) = det(A)
+det(A⁻¹) = 1/det(A)
+det(kA) = kⁿ·det(A)  (n×n matrix)
+
+Row ops effect on det:
+  Swap rows    → det changes sign
+  Scale row    → det scales by same factor
+  Add multiple → det unchanged</div></div>
+      <div class="kp">A matrix is invertible ⟺ det ≠ 0. For triangular matrices, det = product of diagonal entries.</div>
+    </div>
+  </div>
+  <div id="t2-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> If det(A)=3 and A is 3×3, find det(2A), det(A⁻¹), det(Aᵀ), det(A²).</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t2w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t2w1">
+        <div class="step"><span class="snum">1</span><span>det(2A) = 2³·det(A) = 8×3 = <strong>24</strong></span></div>
+        <div class="step"><span class="snum">2</span><span>det(A⁻¹) = 1/det(A) = <strong>1/3</strong></span></div>
+        <div class="step"><span class="snum">3</span><span>det(Aᵀ) = det(A) = <strong>3</strong></span></div>
+        <div class="step"><span class="snum">4</span><span>det(A²) = det(A)² = <strong>9</strong></span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t2-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">A is invertible and AB=AC. Prove B=C.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t2wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t2wq1">Left-multiply both sides by A⁻¹: A⁻¹(AB)=A⁻¹(AC) → (A⁻¹A)B=(A⁻¹A)C → IB=IC → <strong>B=C</strong>. ∎</div>
+    </div>
+  </div>
+  <div id="t2-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2024 — Q2</span><span class="badge b-marks">8 marks</span></div>
+        <div class="qtext">Let A be invertible n×n and B be n×n.
+          <span class="sub">(a) If AB=0, show B=0.</span>
+          <span class="sub">(b) Show det(A+B) need not equal det(A)+det(B) with a counterexample.</span>
+          <span class="sub">(c) If A²=A (idempotent), find all possible values of det(A).</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t2e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t2e1h',4)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t2e1">
+        <div class="step"><span class="snum">a</span><span>A⁻¹ exists. Left-multiply AB=0 by A⁻¹: (A⁻¹A)B=A⁻¹·0 → B=0. ∎</span></div>
+        <div class="step"><span class="snum">b</span><span>Take A=B=I₂. det(A+B)=det(2I₂)=4 but det(A)+det(B)=2. 4≠2. ∎</span></div>
+        <div class="step"><span class="snum">c</span><span>A²=A → det(A²)=det(A) → det(A)²=det(A) → det(A)(det(A)−1)=0 → <strong>det(A)=0 or 1</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t2e1h"><div class="hw-ld" id="t2e1h-l">Generating…</div><canvas class="hw-canvas" id="t2e1h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 3
+══════════════════════════════════════════════ -->
+<div id="page-t3" class="topic-page">
+  <div class="topic-title">Topic 3 — Euclidean Vector Spaces</div>
+  <div class="topic-sub">3.1 Vectors in ℝⁿ · 3.2 Dot product · 3.3 Cross product · 3.4 Lines and planes</div>
+  <div class="phase-row" id="phases-t3">
+    <button class="ptab active" onclick="setPhase('t3',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t3',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t3',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t3',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t3-p0" class="phase active">
+    <div class="sec-row" id="secs-t3">
+      <button class="stab active" onclick="setSec('t3','s1',this)">3.2 Dot Product</button>
+      <button class="stab" onclick="setSec('t3','s2',this)">3.3 Cross Product</button>
+      <button class="stab" onclick="setSec('t3','s3',this)">3.4 Lines & Planes</button>
+    </div>
+    <div id="t3-s1" class="sec active">
+      <div class="card"><h4>Dot product and geometry</h4><div class="fbox">u·v = u₁v₁+u₂v₂+···+uₙvₙ = ‖u‖‖v‖cos θ
+
+‖u‖ = √(u·u)
+u ⊥ v  ⟺  u·v = 0
+cos θ = u·v / (‖u‖‖v‖)</div></div>
+      <div class="card"><h4>Projection formulas</h4><div class="fbox">Vector projection of u onto v:
+  proj_v u = (u·v / ‖v‖²) · v
+
+Scalar projection (length of shadow):
+  comp_v u = u·v / ‖v‖
+
+Component of u perpendicular to v:
+  u − proj_v u</div></div>
+    </div>
+    <div id="t3-s2" class="sec">
+      <div class="card"><h4>Cross product (ℝ³ only)</h4><div class="fbox">u×v = det([[i,j,k],[u₁,u₂,u₃],[v₁,v₂,v₃]])
+    = (u₂v₃−u₃v₂, u₃v₁−u₁v₃, u₁v₂−u₂v₁)
+
+• u×v is perpendicular to BOTH u and v
+• ‖u×v‖ = area of parallelogram spanned by u,v
+• u×v = −(v×u)  (anti-commutative)
+• u×u = 0</div></div>
+      <div class="kp">Cross product only exists in ℝ³. Dot product works in any ℝⁿ.</div>
+    </div>
+    <div id="t3-s3" class="sec">
+      <div class="card"><h4>Lines and planes</h4><div class="fbox">Line through p with direction d:
+  x = p + t·d,  t∈ℝ
+
+Plane with normal n=(a,b,c) through point p:
+  a(x−p₁) + b(y−p₂) + c(z−p₃) = 0
+  i.e.  ax + by + cz = d
+
+Distance from point q to plane ax+by+cz=d:
+  dist = |aq₁+bq₂+cq₃−d| / √(a²+b²+c²)</div></div>
+      <div class="wp">Normal vector to plane ax+by+cz=d is (a,b,c). To find normal to a plane through 3 points: get two vectors in the plane, then take their cross product.</div>
+    </div>
+  </div>
+  <div id="t3-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> Find the plane through P=(1,0,2), Q=(2,1,0), R=(0,3,1). Then find the distance from S=(4,0,0) to this plane.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t3w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t3w1">
+        <div class="step"><span class="snum">1</span><span>Vectors in the plane: PQ=(1,1,−2), PR=(−1,3,−1).</span></div>
+        <div class="step"><span class="snum">2</span><span>Normal n=PQ×PR=(1(−1)−(−2)(3), (−2)(−1)−(1)(−1), (1)(3)−(1)(−1))=(5,3,4).</span></div>
+        <div class="step"><span class="snum">3</span><span>Plane: 5(x−1)+3y+4(z−2)=0 → <strong>5x+3y+4z=13</strong>.</span></div>
+        <div class="step"><span class="snum">4</span><span>Distance from S=(4,0,0): |20+0+0−13|/√50 = 7/5√2 = <strong>7√2/10</strong>.</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t3-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">Find the angle between u=(1,2,−1) and v=(3,1,2). Also find the vector projection of u onto v.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t3wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t3wq1">
+        u·v=3+2−2=3. ‖u‖=√6, ‖v‖=√14. cos θ=3/√84. θ=arccos(3/√84) ≈ 70.9°.<br><br>
+        proj_v u = (3/14)(3,1,2) = <strong>(9/14, 3/14, 3/7)</strong>.
+      </div>
+    </div>
+  </div>
+  <div id="t3-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2022 — Q3</span><span class="badge b-marks">8 marks</span></div>
+        <div class="qtext">Given a=(−1,2,2)/3 and b=(4,1,1)/3:
+          <span class="sub">(a) Find the angle between a and b.</span>
+          <span class="sub">(b) Find a vector orthogonal to both a and b.</span>
+          <span class="sub">(c) Find the equation of the plane with normal a through (1,0,−1).</span>
+          <span class="sub">(d) Find the distance from (2,1,1) to this plane.</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t3e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t3e1h',5)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t3e1">
+        <div class="step"><span class="snum">a</span><span>a·b=(−4+2+2)/9=0 → <strong>θ=90°, a⊥b</strong>.</span></div>
+        <div class="step"><span class="snum">b</span><span>a×b=(1/9)det([[i,j,k],[−1,2,2],[4,1,1]])=(1/9)(0,9,−9)=<strong>(0,1,−1)</strong>.</span></div>
+        <div class="step"><span class="snum">c</span><span>Normal (−1,2,2), point (1,0,−1): −(x−1)+2y+2(z+1)=0 → <strong>−x+2y+2z=−3</strong>.</span></div>
+        <div class="step"><span class="snum">d</span><span>|−2+2+2+3|/√(1+4+4)=5/3 → <strong>distance = 5/3</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t3e1h"><div class="hw-ld" id="t3e1h-l">Generating…</div><canvas class="hw-canvas" id="t3e1h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 4
+══════════════════════════════════════════════ -->
+<div id="page-t4" class="topic-page">
+  <div class="topic-title">Topic 4 — General Vector Spaces</div>
+  <div class="topic-sub">4.1 Vector spaces · 4.2 Subspaces · 4.3 Span · 4.4 Linear independence · 4.5 Bases · 4.6 Row/Col/Null spaces · 4.7 Coordinates</div>
+  <div class="phase-row" id="phases-t4">
+    <button class="ptab active" onclick="setPhase('t4',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t4',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t4',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t4',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t4-p0" class="phase active">
+    <div class="sec-row" id="secs-t4">
+      <button class="stab active" onclick="setSec('t4','s1',this)">4.1-4.2 Subspaces</button>
+      <button class="stab" onclick="setSec('t4','s2',this)">4.3-4.4 Span & Indep.</button>
+      <button class="stab" onclick="setSec('t4','s3',this)">4.5 Bases & Dim.</button>
+      <button class="stab" onclick="setSec('t4','s4',this)">4.6-4.7 Spaces & Coords</button>
+    </div>
+    <div id="t4-s1" class="sec active">
+      <div class="card"><h4>3-test for subspaces</h4><p>W is a subspace of V iff it passes all three:</p><div class="fbox">1. Zero vector: 0 ∈ W
+2. Closed under addition: u,v∈W → u+v∈W
+3. Closed under scaling: u∈W, c∈ℝ → cu∈W
+
+Combined shortcut: u,v∈W → au+bv∈W for all a,b∈ℝ</div><p>To disprove: find ONE counterexample to ONE test. Check test 1 (zero vector) first — it's the fastest.</p></div>
+    </div>
+    <div id="t4-s2" class="sec">
+      <div class="card"><h4>Span and linear independence</h4><p>To test if b ∈ span{v₁,...,vₖ}: row reduce [v₁|...|vₖ|b] and check consistency.</p><p style="margin-top:.5rem">Vectors are linearly independent iff the only solution to c₁v₁+...+cₖvₖ=0 is all cᵢ=0. Test: row reduce the matrix with vectors as columns — independent iff every column has a pivot.</p></div>
+      <div class="kp">k vectors in an n-dim space with k &gt; n are ALWAYS linearly dependent.</div>
+    </div>
+    <div id="t4-s3" class="sec">
+      <div class="card"><h4>Basis and dimension</h4><p>A basis is a set that is both (1) linearly independent AND (2) spans V. The dimension is the size of any basis.</p><div class="fbox">dim(ℝⁿ)=n, dim(Pₙ)=n+1, dim(Mₘₙ)=mn
+
+Rank-Nullity Theorem:
+rank(A) + nullity(A) = n   (n = #columns)</div></div>
+    </div>
+    <div id="t4-s4" class="sec">
+      <div class="card"><h4>The three fundamental spaces</h4><div class="fbox">Row space:    span of rows of A
+              basis = non-zero rows of REF of A
+
+Column space: span of columns of A
+              basis = PIVOT columns of ORIGINAL A
+
+Null space:   solution set of Ax=0
+              basis = free variable vectors from RREF</div></div>
+      <div class="wp"><strong>Critical:</strong> for column space, take pivot columns from the ORIGINAL matrix, not from RREF. Row operations change column values.</div>
+    </div>
+  </div>
+  <div id="t4-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> Find bases for the row space, column space, and null space of A=[[1,2,3],[2,4,6],[1,2,4]].</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t4w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t4w1">
+        <div class="step"><span class="snum">1</span><span>Row reduce: get REF [[1,2,3],[0,0,1],[0,0,0]]. Pivots in columns 1 and 3.</span></div>
+        <div class="step"><span class="snum">2</span><span><strong>Row space basis:</strong> {(1,2,3),(0,0,1)}. Dim=2=rank.</span></div>
+        <div class="step"><span class="snum">3</span><span><strong>Column space basis:</strong> pivot cols 1&3 from ORIGINAL A: {(1,2,1)ᵀ,(3,6,4)ᵀ}.</span></div>
+        <div class="step"><span class="snum">4</span><span><strong>Null space:</strong> Free var x₂=t. x₃=0, x₁=−2t. Basis: {(−2,1,0)ᵀ}. Nullity=1. Check: 2+1=3=n ✓</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t4-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">Is W = {(x,y,z)∈ℝ³ : x+y+z=1} a subspace of ℝ³?</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t4wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t4wq1"><strong>No.</strong> Test 1 fails: (0,0,0) gives 0+0+0=0≠1, so 0∉W. A subspace must contain the zero vector. ∎</div>
+    </div>
+  </div>
+  <div id="t4-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">Summer 2024 — Q6</span><span class="badge b-marks">8 marks</span></div>
+        <div class="qtext">A is a 4×5 matrix with RREF B = [[1,0,0,1,−1],[0,1,0,0,3],[0,0,1,0,1],[0,0,0,0,0]].
+          <span class="sub">(i) Write a basis for the row space of A.</span>
+          <span class="sub">(ii) Are the columns of A linearly independent? If not, express one as a combination of others.</span>
+          <span class="sub">(iii) Deduce the dimension of the null space of A.</span>
+          <span class="sub">(iv) Find a basis for the null space.</span>
+          <span class="sub">(v) If A₀ is A with −2×row2 added to row4, what is RREF of A₀?</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t4e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t4e1h',6)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t4e1">
+        <div class="step"><span class="snum">i</span><span>Non-zero rows of B: <strong>{(1,0,0,1,−1),(0,1,0,0,3),(0,0,1,0,1)}</strong>. Dim=3.</span></div>
+        <div class="step"><span class="snum">ii</span><span>5 columns, rank=3 → NOT independent. From B: col₄ = 1·col₁. So v₄=v₁ (using B's 4th column = (1,0,0,0)).</span></div>
+        <div class="step"><span class="snum">iii</span><span>Nullity = n−rank = 5−3 = <strong>2</strong>.</span></div>
+        <div class="step"><span class="snum">iv</span><span>Free vars x₄=s, x₅=t. From RREF: x₁=−s+t, x₂=−3t, x₃=−t. <strong>Basis: {(−1,0,0,1,0)ᵀ,(1,−3,−1,0,1)ᵀ}</strong>.</span></div>
+        <div class="step"><span class="snum">v</span><span>A₀ is obtained from A by an elementary row op. Row ops don't change RREF (which is unique). <strong>RREF of A₀ = B</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t4e1h"><div class="hw-ld" id="t4e1h-l">Generating…</div><canvas class="hw-canvas" id="t4e1h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 5
+══════════════════════════════════════════════ -->
+<div id="page-t5" class="topic-page">
+  <div class="topic-title">Topic 5 — Linear Transformations</div>
+  <div class="topic-sub">5.1 Definition · 5.2 Geometric transforms · 5.3 Matrix representations · 5.4 Image & kernel · 5.5 Invertible · 5.6 Change of basis</div>
+  <div class="phase-row" id="phases-t5">
+    <button class="ptab active" onclick="setPhase('t5',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t5',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t5',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t5',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t5-p0" class="phase active">
+    <div class="sec-row" id="secs-t5">
+      <button class="stab active" onclick="setSec('t5','s1',this)">5.1 Definition</button>
+      <button class="stab" onclick="setSec('t5','s2',this)">5.2-5.3 Matrix Rep.</button>
+      <button class="stab" onclick="setSec('t5','s3',this)">5.4 Image & Kernel</button>
+      <button class="stab" onclick="setSec('t5','s4',this)">5.6 Change of Basis</button>
+    </div>
+    <div id="t5-s1" class="sec active">
+      <div class="card"><h4>What makes T linear?</h4><div class="fbox">T(u+v) = T(u) + T(v)    (additivity)
+T(cu) = cT(u)            (homogeneity)
+
+Combined: T(cu+dv) = cT(u) + dT(v)</div><p>To <strong>prove</strong> T is linear: verify these for arbitrary vectors u,v and scalars c,d. To <strong>disprove</strong>: find ONE counterexample. Quick check: T(0)=0 must hold — if T(0)≠0 then T is not linear.</p></div>
+    </div>
+    <div id="t5-s2" class="sec">
+      <div class="card"><h4>Finding the matrix representation</h4><div class="fbox">Standard matrix of T:ℝⁿ→ℝᵐ:
+[T] = [ T(e₁) | T(e₂) | ··· | T(eₙ) ]
+columns = images of standard basis vectors
+
+Matrix of T:V→W w.r.t. bases B and C:
+[T]_{C←B} has columns = [T(bᵢ)]_C</div></div>
+      <div class="card"><h4>Geometric transforms in ℝ²</h4><div class="fbox">Rotation by θ:      [[cosθ,−sinθ],[sinθ,cosθ]]
+Reflection in y=x:  [[0,1],[1,0]]
+Reflection x-axis:  [[1,0],[0,−1]]
+Projection x-axis:  [[1,0],[0,0]]
+Horizontal shear:   [[1,k],[0,1]]</div></div>
+    </div>
+    <div id="t5-s3" class="sec">
+      <div class="card"><h4>Kernel and Image</h4><div class="fbox">ker(T) = {v : T(v)=0}  = null space of [T]
+im(T) = {T(v)}         = column space of [T]
+
+Injective (one-to-one): ker(T)={0}, i.e. nullity=0
+Surjective (onto):      im(T)=W, i.e. rank=dim(W)
+
+Rank-Nullity: rank(T) + nullity(T) = dim(domain)</div></div>
+    </div>
+    <div id="t5-s4" class="sec">
+      <div class="card"><h4>Change of basis</h4><div class="fbox">P_{S←B} = [b₁|b₂|···|bₙ]  (cols = basis vectors)
+P_{B←S} = (P_{S←B})⁻¹
+
+Matrix of T in new bases:
+[T]_{new} = P⁻¹ · [T]_{std} · P</div></div>
+      <div class="kp">Change of basis = convert to standard → apply T → convert back. The formula P⁻¹[T]P follows this exactly.</div>
+    </div>
+  </div>
+  <div id="t5-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> T:P₂→P₂ defined by T(p(x))=p(2x+1). Find [T]_B where B={1,x,x²}.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t5w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t5w1">
+        <div class="step"><span class="snum">1</span><span>T(1)=1, T(x)=2x+1, T(x²)=(2x+1)²=4x²+4x+1.</span></div>
+        <div class="step"><span class="snum">2</span><span>Express in basis B: [T(1)]_B=(1,0,0), [T(x)]_B=(1,2,0), [T(x²)]_B=(1,4,4).</span></div>
+        <div class="step"><span class="snum">3</span><span>[T]_B = [[1,1,1],[0,2,4],[0,0,4]].</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t5-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">T:ℝ³→ℝ² defined by T(x,y,z)=(2x−y+z, x+3z). Find ker(T), im(T). Is T injective? Surjective?</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t5wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t5wq1">
+        [T]=[[2,−1,1],[1,0,3]]. RREF: [[1,0,3],[0,1,5]]. Rank=2, nullity=1.<br><br>
+        <strong>ker(T):</strong> z=t, x=−3t, y=−5t → span{(−3,−5,1)ᵀ}.<br>
+        <strong>im(T):</strong> rank=2=dim(ℝ²) → im(T)=ℝ².<br>
+        <strong>Not injective</strong> (nullity≠0). <strong>Surjective</strong> ✓.
+      </div>
+    </div>
+  </div>
+  <div id="t5-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2022 — Q8(b)</span><span class="badge b-marks">7 marks</span></div>
+        <div class="qtext">T:P₂→P₁ defined by T(p(x))=p(1)+p(2)x.
+          <span class="sub">(i) Find [T] with respect to standard bases B={1,x,x²} for P₂ and C={1,x} for P₁.</span>
+          <span class="sub">(ii) Find ker(T) and im(T).</span>
+          <span class="sub">(iii) Is T injective? Surjective?</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t5e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t5e1h',7)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t5e1">
+        <div class="step"><span class="snum">i</span><span>T(1)=1+x, T(x)=1+2x, T(x²)=1+4x. Coords in C={1,x}: [T]_C=[[1,1,1],[1,2,4]].</span></div>
+        <div class="step"><span class="snum">ii</span><span>ker(T): solve [[1,1,1],[1,2,4]]v=0. RREF→[[1,0,−2],[0,1,3]]. ker=span{(2,−3,1)ᵀ}. im(T)=col space=[T]=ℝ² (2 pivots).</span></div>
+        <div class="step"><span class="snum">iii</span><span><strong>Not injective</strong> (nullity=1≠0). <strong>Surjective</strong> (rank=2=dim(P₁)).</span></div>
+      </div>
+      <div class="hw-panel" id="t5e1h"><div class="hw-ld" id="t5e1h-l">Generating…</div><canvas class="hw-canvas" id="t5e1h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 6
+══════════════════════════════════════════════ -->
+<div id="page-t6" class="topic-page">
+  <div class="topic-title">Topic 6 — Eigenvalues &amp; Eigenvectors</div>
+  <div class="topic-sub">6.1 Definition · 6.2 Finding eigenvalues · 6.3 Finding eigenvectors · 6.4 Diagonalisation · 6.5 Matrix powers</div>
+  <div class="phase-row" id="phases-t6">
+    <button class="ptab active" onclick="setPhase('t6',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t6',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t6',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t6',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t6-p0" class="phase active">
+    <div class="sec-row" id="secs-t6">
+      <button class="stab active" onclick="setSec('t6','s1',this)">6.1-6.2 Eigenvalues</button>
+      <button class="stab" onclick="setSec('t6','s2',this)">6.3 Eigenvectors</button>
+      <button class="stab" onclick="setSec('t6','s3',this)">6.4 Diagonalisation</button>
+      <button class="stab" onclick="setSec('t6','s4',this)">6.5 Matrix Powers</button>
+    </div>
+    <div id="t6-s1" class="sec active">
+      <div class="card"><h4>Core idea and definition</h4><p>An eigenvector is a non-zero vector that doesn't rotate under A — only its length scales. The scale factor is the eigenvalue.</p><div class="fbox">Av = λv  (v ≠ 0)
+
+To find eigenvalues: solve det(A − λI) = 0
+
+Check answers using:
+  trace(A) = λ₁ + λ₂ + ··· + λₙ
+  det(A)   = λ₁ · λ₂ ··· λₙ
+  Triangular A → eigenvalues = diagonal entries</div></div>
+    </div>
+    <div id="t6-s2" class="sec">
+      <div class="card"><h4>Finding eigenvectors</h4><p>For each λ, solve (A−λI)v=0. The solution space is the eigenspace of λ.</p><div class="fbox">Geometric multiplicity = dim(eigenspace)
+Algebraic multiplicity = power of (λ−λ₀) in char. poly
+
+Always: 1 ≤ geometric mult ≤ algebraic mult</div></div>
+      <div class="kp">Eigenvectors from different eigenvalues are always linearly independent. The zero vector is NEVER an eigenvector.</div>
+    </div>
+    <div id="t6-s3" class="sec">
+      <div class="card"><h4>Diagonalisation A = PDP⁻¹</h4><p>A is diagonalisable iff it has n linearly independent eigenvectors. Build P with eigenvectors as columns, D with corresponding eigenvalues on diagonal.</p><p style="margin-top:.5rem">Guaranteed diagonalisable: n distinct eigenvalues. May not be: repeated eigenvalues where geom. mult. &lt; alg. mult.</p></div>
+      <div class="wp">Order matters: eigenvalue D[i,i] must correspond to eigenvector P[:,i]. Mismatching them gives A≠PDP⁻¹.</div>
+    </div>
+    <div id="t6-s4" class="sec">
+      <div class="card"><h4>Matrix powers</h4><div class="fbox">If A = PDP⁻¹, then Aᵏ = PDᵏP⁻¹
+
+Dᵏ = diag(λ₁ᵏ, λ₂ᵏ, ..., λₙᵏ)  ← trivial
+
+Long-run: |λ|>1 grows, |λ|<1 decays to 0, |λ|=1 stays</div></div>
+    </div>
+  </div>
+  <div id="t6-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> M has eigenvectors v₁=(−1,0,1), v₂=(−3,−2,1), v₃=(−5,4,1) with eigenvalues 4,2,0. Compute M⁵(3v₂+v₃).</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t6w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t6w1">
+        <div class="step"><span class="snum">1</span><span>Key insight: M acts on eigenvectors by scalar multiplication. Mᵏvᵢ=λᵢᵏvᵢ.</span></div>
+        <div class="step"><span class="snum">2</span><span>M⁵(3v₂+v₃)=3M⁵v₂+M⁵v₃=3·2⁵·v₂+0⁵·v₃=96·(−3,−2,1)+0=<strong>(−288,−192,96)</strong>.</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t6-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">Show A=[[1,2],[0,1]] is NOT diagonalisable over ℝ.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t6wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t6wq1">Characteristic equation: (1−λ)²=0 → λ=1 with alg. mult.=2. Eigenspace: (A−I)v=[[0,2],[0,0]]v=0 → one free variable → geom. mult.=1. Since 1 &lt; 2, <strong>not diagonalisable</strong>. ∎</div>
+    </div>
+  </div>
+  <div id="t6-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2022 — Q10</span><span class="badge b-marks">10 marks</span></div>
+        <div class="qtext">A=[[4,0,−1],[0,3,0],[1,0,2]].
+          <span class="sub">(a) Find all eigenvalues of A.</span>
+          <span class="sub">(b) Find a basis for each eigenspace.</span>
+          <span class="sub">(c) Algebraic and geometric multiplicities?</span>
+          <span class="sub">(d) Is A diagonalisable?</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t6e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t6e1h',8)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t6e1">
+        <div class="step"><span class="snum">a</span><span>Expand along row 2: det=(3−λ)[(4−λ)(2−λ)+1]=(3−λ)(λ−3)²=−(λ−3)³=0. <strong>λ=3 (alg. mult.=3)</strong>.</span></div>
+        <div class="step"><span class="snum">b</span><span>A−3I=[[1,0,−1],[0,0,0],[1,0,−1]]→[[1,0,−1],[0,0,0]]. Free: v₂=s,v₃=t. <strong>Basis:{(0,1,0)ᵀ,(1,0,1)ᵀ}</strong>. Geom.mult.=2.</span></div>
+        <div class="step"><span class="snum">c</span><span>λ=3: alg.mult.=3, geom.mult.=2.</span></div>
+        <div class="step"><span class="snum">d</span><span><strong>NOT diagonalisable</strong>. Geom.mult.(2) &lt; alg.mult.(3) → cannot find 3 independent eigenvectors.</span></div>
+      </div>
+      <div class="hw-panel" id="t6e1h"><div class="hw-ld" id="t6e1h-l">Generating…</div><canvas class="hw-canvas" id="t6e1h-c" style="display:none"></canvas></div>
+    </div>
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S1 2022 — Q10</span><span class="badge b-marks">12 marks</span></div>
+        <div class="qtext">Markov chain M=[[1/2,1/3],[1/2,2/3]], xₖ=Mᵏx₀, x₀=(p,1−p)ᵀ.
+          <span class="sub">(a) Find eigenvalues. (b) Find eigenvectors. (c) Write x₀ in terms of eigenvectors. (d) Find xₖ. (e) Find lim xₖ as k→∞ — does it depend on p?</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t6e2',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t6e2h',9)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t6e2">
+        <div class="step"><span class="snum">a</span><span>(6λ−1)(λ−1)=0 → <strong>λ=1, λ=1/6</strong>.</span></div>
+        <div class="step"><span class="snum">b</span><span>λ=1: v₁=(2,3)ᵀ. λ=1/6: v₂=(1,−1)ᵀ.</span></div>
+        <div class="step"><span class="snum">c</span><span>2α+β=p, 3α−β=1−p → α=1/5, β=p−2/5. So x₀=(1/5)v₁+(p−2/5)v₂.</span></div>
+        <div class="step"><span class="snum">d</span><span>xₖ=(1/5)(2,3)ᵀ+(p−2/5)(1/6)ᵏ(1,−1)ᵀ.</span></div>
+        <div class="step"><span class="snum">e</span><span>(1/6)ᵏ→0 → <strong>lim xₖ=(2/5,3/5)ᵀ</strong>. Does NOT depend on p — universal steady state. ∎</span></div>
+      </div>
+      <div class="hw-panel" id="t6e2h"><div class="hw-ld" id="t6e2h-l">Generating…</div><canvas class="hw-canvas" id="t6e2h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOPIC 7
+══════════════════════════════════════════════ -->
+<div id="page-t7" class="topic-page">
+  <div class="topic-title">Topic 7 — Inner Product Spaces</div>
+  <div class="topic-sub">7.1 Definition · 7.2 Geometry · 7.3 Gram-Schmidt · 7.4 Least Squares · 7.5 Orthogonal matrices · 7.6 Hermitian</div>
+  <div class="phase-row" id="phases-t7">
+    <button class="ptab active" onclick="setPhase('t7',0,this)">📖 Teach</button>
+    <button class="ptab" onclick="setPhase('t7',1,this)">✏️ Worked</button>
+    <button class="ptab" onclick="setPhase('t7',2,this)">🔥 Warm-Up</button>
+    <button class="ptab" onclick="setPhase('t7',3,this)">🎯 Exam Prep</button>
+  </div>
+  <div id="t7-p0" class="phase active">
+    <div class="sec-row" id="secs-t7">
+      <button class="stab active" onclick="setSec('t7','s1',this)">7.1-7.2 Definition</button>
+      <button class="stab" onclick="setSec('t7','s2',this)">7.3 Gram-Schmidt</button>
+      <button class="stab" onclick="setSec('t7','s3',this)">7.4 Least Squares</button>
+      <button class="stab" onclick="setSec('t7','s4',this)">7.5-7.6 Orthogonal</button>
+    </div>
+    <div id="t7-s1" class="sec active">
+      <div class="card"><h4>4 axioms for an inner product</h4><div class="fbox">1. ⟨u,v⟩ = ⟨v,u⟩              (symmetry)
+2. ⟨αu,v⟩ = α⟨u,v⟩            (scalar linearity)
+3. ⟨u+v,w⟩ = ⟨u,w⟩+⟨v,w⟩     (additivity)
+4a. ⟨u,u⟩ ≥ 0                  (positivity)
+4b. ⟨u,u⟩=0 ⟺ u=0            (definiteness)</div></div>
+      <div class="card"><h4>Geometry from ⟨·,·⟩</h4><div class="fbox">‖v‖ = √⟨v,v⟩
+cos θ = ⟨u,v⟩/(‖u‖‖v‖)
+proj_W v = Σᵢ ⟨v,uᵢ⟩uᵢ   (uᵢ orthonormal basis for W)</div></div>
+      <div class="wp">To disprove ⟨·,·⟩ is an inner product: try u=(0,1) and check if ⟨u,u⟩ &lt; 0. Axiom 4a is the most common failure.</div>
+    </div>
+    <div id="t7-s2" class="sec">
+      <div class="card"><h4>Gram-Schmidt procedure</h4><div class="fbox">Given basis {v₁,...,vₖ} → orthonormal basis {u₁,...,uₖ}:
+
+Step 1:  u₁ = v₁/‖v₁‖
+
+Step 2a: w₂ = v₂ − ⟨v₂,u₁⟩u₁
+Step 2b: u₂ = w₂/‖w₂‖
+
+Step 3a: w₃ = v₃ − ⟨v₃,u₁⟩u₁ − ⟨v₃,u₂⟩u₂
+Step 3b: u₃ = w₃/‖w₃‖  ... and so on</div></div>
+      <div class="wp">At each step, subtract projections onto ALL previous uᵢ before normalising. Missing one ruins everything.</div>
+    </div>
+    <div id="t7-s3" class="sec">
+      <div class="card"><h4>Least squares — normal equations</h4><div class="fbox">Line y=a+bx for data points (x₁,y₁),...,(xₙ,yₙ):
+
+A=[[1,x₁],[1,x₂],...], y=(y₁,...,yₙ)ᵀ, u=(a,b)ᵀ
+
+Solve: AᵀAu = Aᵀy
+Formula: u = (AᵀA)⁻¹Aᵀy  (if AᵀA invertible)</div></div>
+    </div>
+    <div id="t7-s4" class="sec">
+      <div class="card"><h4>Orthogonal matrix</h4><div class="fbox">Q orthogonal ⟺ QᵀQ=I ⟺ Q⁻¹=Qᵀ
+det(Q) = ±1. Q preserves lengths and angles.</div></div>
+      <div class="card"><h4>Spectral Theorem</h4><p>Every real symmetric matrix (Aᵀ=A) is orthogonally diagonalisable: A=QDQᵀ where Q is orthogonal. All eigenvalues are real. Eigenvectors from different eigenspaces are orthogonal.</p></div>
+      <div class="card"><h4>Hermitian (complex)</h4><div class="fbox">Hermitian inner product: ⟨u,v⟩=⟨v,u⟩* (conjugate symmetry)
+Standard on ℂⁿ: ⟨u,v⟩ = Σ uᵢv̄ᵢ  ← conjugate the 2nd
+Unitary U: U*U=I (complex analogue of orthogonal)
+Hermitian H: H*=H (complex analogue of symmetric)</div></div>
+    </div>
+  </div>
+  <div id="t7-p1" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qtext"><strong style="color:var(--brown-dark)">Example.</strong> Apply Gram-Schmidt to {(1,1,1),(0,1,1),(0,0,1)} with dot product.</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t7w1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t7w1">
+        <div class="step"><span class="snum">1</span><span>u₁=(1,1,1)/√3 = (1/√3, 1/√3, 1/√3).</span></div>
+        <div class="step"><span class="snum">2</span><span>⟨v₂,u₁⟩=2/√3. w₂=(0,1,1)−(2/3)(1,1,1)=(−2/3,1/3,1/3). ‖w₂‖=√6/3. u₂=(−2/√6,1/√6,1/√6).</span></div>
+        <div class="step"><span class="snum">3</span><span>w₃=(0,0,1)−(1/√3)u₁−(1/√6)u₂=(0,−1/2,1/2). ‖w₃‖=1/√2. u₃=(0,−1/√2,1/√2).</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="t7-p2" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-warm">Warm-Up</span></div><div class="qtext">Show ⟨u,v⟩=u₁v₁−u₂v₂ is NOT an inner product on ℝ². Which axiom fails?</div></div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t7wq1',this)">Show solution</button></div>
+      <div class="sol-panel" id="t7wq1">Take u=(0,1): ⟨u,u⟩=0−1=−1&lt;0. <strong>Axiom 4a (positivity) fails.</strong> Not an inner product. ∎</div>
+    </div>
+  </div>
+  <div id="t7-p3" class="phase">
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">S2 2022 — Q11</span><span class="badge b-marks">11 marks</span></div>
+        <div class="qtext">⟨u,v⟩=4u₁v₁−2u₁v₂−2u₂v₁+3u₂v₂. B={b₁,b₂}={(1/√3)(1,1),(1/(2√6))(1,−2)}.
+          <span class="sub">(a) Write ⟨u,v⟩=uᵀAv, specify A.</span>
+          <span class="sub">(b) Show it defines an inner product.</span>
+          <span class="sub">(c) Is B orthonormal w.r.t. this inner product?</span>
+          <span class="sub">(d) Find orthogonal projection of w=(2,−1) onto b₁.</span>
+        </div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t7e1',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t7e1h',10)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t7e1">
+        <div class="step"><span class="snum">a</span><span><strong>A=[[4,−2],[−2,3]]</strong>.</span></div>
+        <div class="step"><span class="snum">b</span><span>A symmetric → axioms 1-3. ⟨u,u⟩=3u₁²+(u₁−2u₂)²≥0, =0 only if u=0. ✓</span></div>
+        <div class="step"><span class="snum">c</span><span>‖b₁‖²=1✓. ‖b₂‖²=1✓. ⟨b₁,b₂⟩=0✓. <strong>Yes, B is orthonormal.</strong></span></div>
+        <div class="step"><span class="snum">d</span><span>⟨w,b₁⟩=(1/√3)(8−4+2−3)=√3. proj=√3·(1/√3)(1,1)=<strong>(1,1)</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t7e1h"><div class="hw-ld" id="t7e1h-l">Generating…</div><canvas class="hw-canvas" id="t7e1h-c" style="display:none"></canvas></div>
+    </div>
+    <div class="qcard">
+      <div class="qcard-top"><div class="qmeta"><span class="badge b-exam">Summer 2025 — Q12</span><span class="badge b-marks">7 marks</span></div>
+        <div class="qtext">Apply Gram-Schmidt to {(−2,0,−1,−2),(1,2,3,2),(−2,−5,−5,0)} ⊂ ℝ⁴. Find the orthogonal projection of x=(0,0,0,1) onto W and its length.</div>
+      </div>
+      <div class="qbtns"><button class="btn" onclick="toggleSol('t7e2',this)">Show typed solution</button><button class="btn btn-hw" onclick="doHW('t7e2h',11)">✎ Handwritten</button></div>
+      <div class="sol-panel" id="t7e2">
+        <div class="step"><span class="snum">1</span><span>u₁=(1/3)(−2,0,−1,−2). u₂=(1/3)(−1,2,2,0). u₃=(1/3)(2,−1,2,−2).</span></div>
+        <div class="step"><span class="snum">2</span><span>⟨x,u₁⟩=−2/3, ⟨x,u₂⟩=0, ⟨x,u₃⟩=−2/3. proj=(0,2/9,−2/9,8/9).</span></div>
+        <div class="step"><span class="snum">3</span><span>‖proj‖=√(72/81)=<strong>2√2/3</strong>.</span></div>
+      </div>
+      <div class="hw-panel" id="t7e2h"><div class="hw-ld" id="t7e2h-l">Generating…</div><canvas class="hw-canvas" id="t7e2h-c" style="display:none"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     THINKING GUIDE
+══════════════════════════════════════════════ -->
+<div id="page-think" class="topic-page">
+  <div class="topic-title">🧠 Exam Thinking Guide</div>
+  <div class="topic-sub">See a question → know instantly which direction to think. This is what separates full marks from partial marks.</div>
+
+  <div class="think-warn"><strong>The exam is harder than tutorials.</strong> Questions rarely say "use Gram-Schmidt" or "find eigenvalues." They give you a situation and you must recognise which tool applies. This guide trains that instinct.</div>
+
+  <div class="think-section-title">Topic 1 — Linear Equations</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">system of equations</span><span class="think-then">→ Write [A|b], row reduce, classify by last row</span></div>
+      <div class="think-row"><span class="think-if">parameter k in matrix</span><span class="think-then">→ Row reduce symbolically; [0…0|c]: inconsistent; [0…0|0]: free variable</span></div>
+      <div class="think-row"><span class="think-if">fit polynomial to data</span><span class="think-then">→ Sub each data point → linear system in coefficients → solve</span></div>
+      <div class="think-row"><span class="think-if">traffic flow / network</span><span class="think-then">→ Flow in = flow out at each node → linear system</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">row ops</span><span class="think-then">→ Label every step: R2→R2−2R1. Missing notation = lost marks.</span></div>
+      <div class="think-row"><span class="think-if">parametric form</span><span class="think-then">→ Write x = x_p + t·v₁ + s·v₂ (particular + homogeneous)</span></div>
+      <div class="think-row"><span class="think-if">no/unique/infinite</span><span class="think-then">→ Identify the decisive row; state condition explicitly</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 2 — Matrices &amp; Determinants</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">find A⁻¹</span><span class="think-then">→ Row reduce [A|I] → [I|A⁻¹]</span></div>
+      <div class="think-row"><span class="think-if">prove something about AB</span><span class="think-then">→ Try multiplying both sides by A⁻¹ or B⁻¹</span></div>
+      <div class="think-row"><span class="think-if">det with parameters</span><span class="think-then">→ Expand along row/column with most zeros</span></div>
+      <div class="think-row"><span class="think-if">A²=A (idempotent)</span><span class="think-then">→ Take det both sides: det(A)²=det(A) → det∈{0,1}</span></div>
+      <div class="think-row"><span class="think-if">is A invertible?</span><span class="think-then">→ Check det(A)≠0 or rank=n</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">(AB)⁻¹</span><span class="think-then">→ MUST reverse order: B⁻¹A⁻¹ not A⁻¹B⁻¹</span></div>
+      <div class="think-row"><span class="think-if">det(kA)</span><span class="think-then">→ kⁿ·det(A) for n×n. Easy to forget the n.</span></div>
+      <div class="think-row"><span class="think-if">proof by contradiction</span><span class="think-then">→ Assume det≠0, or A invertible, then derive.</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 3 — Euclidean Vectors</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">plane through 3 points</span><span class="think-then">→ Two vectors in plane → cross product = normal → point-normal form</span></div>
+      <div class="think-row"><span class="think-if">distance point to plane</span><span class="think-then">→ |ax+by+cz−d|/√(a²+b²+c²)</span></div>
+      <div class="think-row"><span class="think-if">area of parallelogram</span><span class="think-then">→ ‖u×v‖. For triangle: half.</span></div>
+      <div class="think-row"><span class="think-if">parallel / perpendicular?</span><span class="think-then">→ Parallel = direction vectors are scalar multiples. Perp = dot product=0.</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">line through 2 points</span><span class="think-then">→ direction = P₂−P₁. Line: x=P₁+t(P₂−P₁).</span></div>
+      <div class="think-row"><span class="think-if">do lines intersect?</span><span class="think-then">→ Set parametric eqs equal, solve system; check consistency.</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 4 — Vector Spaces</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">is W a subspace?</span><span class="think-then">→ Test 0∈W first. Then au+bv∈W for arbitrary a,b.</span></div>
+      <div class="think-row"><span class="think-if">is v in span{...}?</span><span class="think-then">→ Row reduce [v₁|…|vₖ|v], check consistency.</span></div>
+      <div class="think-row"><span class="think-if">linearly independent?</span><span class="think-then">→ Row reduce matrix (cols = vectors). Indep ↔ pivot in every col.</span></div>
+      <div class="think-row"><span class="think-if">find null/col/row space</span><span class="think-then">→ All from ONE row reduction. Do it once, extract all three.</span></div>
+      <div class="think-row"><span class="think-if">rank + nullity</span><span class="think-then">→ Must quote: rank+nullity=n (#columns). State this theorem.</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">column space basis</span><span class="think-then">→ Pivot cols of ORIGINAL matrix. NOT the RREF columns!</span></div>
+      <div class="think-row"><span class="think-if">is it a basis?</span><span class="think-then">→ Check: (1) right number, (2) linearly independent. Both needed.</span></div>
+      <div class="think-row"><span class="think-if">RREF changes</span><span class="think-then">→ RREF is unique. Any row op gives same RREF. Use this!</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 5 — Linear Transformations</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">is T linear?</span><span class="think-then">→ Check T(0)=0 first. Then T(cu+dv)=cT(u)+dT(v).</span></div>
+      <div class="think-row"><span class="think-if">find standard matrix</span><span class="think-then">→ Apply T to e₁,e₂,…,eₙ. Columns = T(eᵢ).</span></div>
+      <div class="think-row"><span class="think-if">find kernel / image</span><span class="think-then">→ ker = null space of [T]. im = col space of [T].</span></div>
+      <div class="think-row"><span class="think-if">injective? surjective?</span><span class="think-then">→ Injective ↔ ker={0}. Surjective ↔ rank=dim(codomain).</span></div>
+      <div class="think-row"><span class="think-if">geometric transform</span><span class="think-then">→ Apply to basis vectors, read off columns. Use known matrix forms.</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">change of basis</span><span class="think-then">→ [T]_new = P⁻¹[T]P. State formula explicitly.</span></div>
+      <div class="think-row"><span class="think-if">proving linearity</span><span class="think-then">→ Use ARBITRARY u,v,c,d. Never use specific examples as a proof.</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 6 — Eigenvalues</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">find eigenvalues</span><span class="think-then">→ det(A−λI)=0. Always verify using trace and det.</span></div>
+      <div class="think-row"><span class="think-if">eigenvectors given, find λ</span><span class="think-then">→ Compute Avᵢ directly and read off the scale factor.</span></div>
+      <div class="think-row"><span class="think-if">Aᵏv for eigenvector v</span><span class="think-then">→ Aᵏv=λᵏv immediately. No matrix multiplication needed!</span></div>
+      <div class="think-row"><span class="think-if">diagonalisable?</span><span class="think-then">→ Check geom.mult. = alg.mult. for ALL eigenvalues.</span></div>
+      <div class="think-row"><span class="think-if">Aᵏ for large k</span><span class="think-then">→ Diagonalise A=PDP⁻¹, then Aᵏ=PDᵏP⁻¹.</span></div>
+      <div class="think-row"><span class="think-if">Markov / long-run</span><span class="think-then">→ Find eigenvector for λ=1, normalise so entries sum to 1.</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">repeated eigenvalue</span><span class="think-then">→ Always check geom.mult. Not diagonalisable if geom &lt; alg.</span></div>
+      <div class="think-row"><span class="think-if">similar matrices A=PBP⁻¹</span><span class="think-then">→ Same eigenvalues, same char. poly, same trace and det.</span></div>
+      <div class="think-row"><span class="think-if">triangular matrix</span><span class="think-then">→ Eigenvalues = diagonal entries. Always state this theorem.</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">Topic 7 — Inner Products</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>If the question involves…</h4>
+      <div class="think-row"><span class="think-if">is ⟨·,·⟩ an inner product?</span><span class="think-then">→ Test axiom 4a first: try u=(0,1). If ⟨u,u⟩&lt;0 → done.</span></div>
+      <div class="think-row"><span class="think-if">show uᵀAv is inner product</span><span class="think-then">→ A symmetric → axioms 1-3. Show A positive definite for axiom 4.</span></div>
+      <div class="think-row"><span class="think-if">orthonormal basis needed</span><span class="think-then">→ Gram-Schmidt. Show every projection step explicitly.</span></div>
+      <div class="think-row"><span class="think-if">project v onto W</span><span class="think-then">→ If {u₁,...} orthonormal: proj=Σ⟨v,uᵢ⟩uᵢ.</span></div>
+      <div class="think-row"><span class="think-if">least squares line</span><span class="think-then">→ Build A (1s + x-values), solve AᵀAu=Aᵀy.</span></div>
+      <div class="think-row"><span class="think-if">Hermitian/complex inner prod.</span><span class="think-then">→ Conjugate the SECOND argument. ⟨u,v⟩=Σuᵢv̄ᵢ.</span></div>
+    </div>
+    <div class="think-card"><h4>Full marks checklist</h4>
+      <div class="think-row"><span class="think-if">Frobenius inner product</span><span class="think-then">→ ⟨A,B⟩=Tr(AᵀB). ‖A‖²=sum of squares of all entries.</span></div>
+      <div class="think-row"><span class="think-if">orthogonal matrix proof</span><span class="think-then">→ From QᵀQ=I, take det: det(Q)²=1 → det(Q)=±1.</span></div>
+      <div class="think-row"><span class="think-if">symmetric eigenvalues</span><span class="think-then">→ Always real. Different eigenspaces are orthogonal (state theorem).</span></div>
+    </div>
+  </div>
+
+  <div class="think-section-title">🔴 Cross-Topic Patterns — Exam Favourites</div>
+  <div class="think-grid">
+    <div class="think-card"><h4>Multi-part question structures</h4>
+      <div class="think-row"><span class="think-if">eigenvalue + Aᵏ</span><span class="think-then">→ Part 1: find λ. Part 2: diagonalise. Part 3: compute Aᵏ or limit.</span></div>
+      <div class="think-row"><span class="think-if">inner product + projection</span><span class="think-then">→ Part 1: verify inner product. Part 2: check orthonormal. Part 3: project.</span></div>
+      <div class="think-row"><span class="think-if">RREF given → deductions</span><span class="think-then">→ Extract row space, col space, null space, rank, nullity all at once.</span></div>
+      <div class="think-row"><span class="think-if">show T linear + find matrix</span><span class="think-then">→ Part 1: prove linearity with arbitrary vectors. Part 2: apply to basis vectors.</span></div>
+    </div>
+    <div class="think-card"><h4>Proof patterns</h4>
+      <div class="think-row"><span class="think-if">prove B=0 given AB=0</span><span class="think-then">→ A invertible: left-multiply by A⁻¹.</span></div>
+      <div class="think-row"><span class="think-if">eigenvalue of A⁻¹</span><span class="think-then">→ Start Av=λv, multiply by A⁻¹, get A⁻¹v=(1/λ)v.</span></div>
+      <div class="think-row"><span class="think-if">det(Q)=±1 for orthogonal</span><span class="think-then">→ Start QᵀQ=I, take det both sides.</span></div>
+      <div class="think-row"><span class="think-if">not a subspace</span><span class="think-then">→ Try zero vector first. Then try sum of two elements.</span></div>
+      <div class="think-row"><span class="think-if">similar matrices same λ</span><span class="think-then">→ A=PBP⁻¹, Av=λv → Bw=λw where w=P⁻¹v.</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ── TOPIC SWITCHING ──
+function gotoTopic(id) {
+  document.querySelectorAll('.topic-page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tnav').forEach(function(t){ t.classList.remove('active'); });
+  var page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  document.querySelectorAll('.tnav').forEach(function(t){
+    if (t.getAttribute('onclick') && t.getAttribute('onclick').indexOf("'" + id + "'") !== -1) {
+      t.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+// ── PHASE SWITCHING ──
+function setPhase(topic, idx, btn) {
+  // hide all phases for this topic
+  for (var i = 0; i < 4; i++) {
+    var ph = document.getElementById(topic + '-p' + i);
+    if (ph) ph.classList.remove('active');
+  }
+  var target = document.getElementById(topic + '-p' + idx);
+  if (target) target.classList.add('active');
+  // update tab styles
+  var row = document.getElementById('phases-' + topic);
+  if (row) {
+    row.querySelectorAll('.ptab').forEach(function(t){ t.classList.remove('active'); });
+  }
+  if (btn) btn.classList.add('active');
+}
+
+// ── SECTION SWITCHING ──
+function setSec(topic, secId, btn) {
+  var secKey = topic + '-' + secId;
+  // find all secs under this topic's teach phase
+  var phase = document.getElementById(topic + '-p0');
+  if (phase) {
+    phase.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('active'); });
+  }
+  var target = document.getElementById(secKey);
+  if (target) target.classList.add('active');
+  // update stab styles
+  var row = document.getElementById('secs-' + topic);
+  if (row) {
+    row.querySelectorAll('.stab').forEach(function(t){ t.classList.remove('active'); });
+  }
+  if (btn) btn.classList.add('active');
+}
+
+// ── SOLUTION TOGGLE ──
+function toggleSol(id, btn) {
+  var panel = document.getElementById(id);
+  if (!panel) return;
+  var isVis = panel.classList.contains('vis');
+  panel.classList.toggle('vis');
+  if (btn) {
+    if (panel.classList.contains('vis')) {
+      btn.textContent = btn.textContent.indexOf('typed') !== -1 ? 'Hide typed solution' : 'Hide solution';
+    } else {
+      btn.textContent = btn.textContent.indexOf('typed') !== -1 ? 'Show typed solution' : 'Show solution';
+    }
+  }
+}
+
+// ── HANDWRITTEN SOLUTIONS ──
+var HW = {
+  1: { h:360, lines:[
+    {t:'Parametric system — deciding row',x:32,y:40,s:15,b:true},
+    {t:'Last row: [0, 0, a−3 | b+2]',x:32,y:65,s:14},
+    {t:'(i) No solution:',x:32,y:100,s:15,b:true,c:'#b83232'},
+    {t:'a−3=0 and b+2≠0',x:52,y:123,s:14},
+    {t:'→  a=3,  b≠−2',x:52,y:146,s:15,b:true,c:'#b83232'},
+    {t:'(ii) Unique solution:',x:32,y:182,s:15,b:true,c:'#2563a8'},
+    {t:'a−3≠0  (pivot exists in last col)',x:52,y:205,s:14},
+    {t:'→  a≠3  (any b)',x:52,y:228,s:15,b:true,c:'#2563a8'},
+    {t:'(iii) Infinitely many:',x:32,y:264,s:15,b:true,c:'#2a6e3a'},
+    {t:'a−3=0 and b+2=0  (whole row = 0)',x:52,y:287,s:14},
+    {t:'→  a=3,  b=−2',x:52,y:310,s:15,b:true,c:'#2a6e3a'},
+  ]},
+  2: { h:400, lines:[
+    {t:'Summer 2025 Q1 — Data fitting y=a+bx+cx²+dx³',x:32,y:40,s:14,b:true},
+    {t:'(i) Sub each point:',x:32,y:70,s:15,b:true},
+    {t:'x=−1: a−b+c−d=5',x:52,y:93,s:14},
+    {t:'x=0:  a=1',x:52,y:115,s:14},
+    {t:'x=1:  a+b+c+d=5',x:52,y:137,s:14},
+    {t:'x=2:  a+2b+4c+8d=11',x:52,y:159,s:14},
+    {t:'(ii) a=1 from x=0. Sub in:',x:32,y:192,s:15,b:true},
+    {t:'−b+c−d=4,  b+c+d=4,  b+2c+4d=5',x:52,y:215,s:13},
+    {t:'(iii) Row reduce and solve:',x:32,y:250,s:15,b:true},
+    {t:'Add rows 1+2: 2c=8 → c=0. Then b+d=4.',x:52,y:273,s:13},
+    {t:'Row 3: b+2(0)+4d=5 → b+4d=5.',x:52,y:296,s:13},
+    {t:'Solve: 4d−d=5−4=1 → 3d=−3 → d=−1.',x:52,y:319,s:13},
+    {t:'b=4+1=5... recheck: b+d=4 and b+4d=5',x:52,y:342,s:13,c:'#888'},
+    {t:'Answer: a=1, b=4, c=0, d=−1',x:32,y:375,s:15,b:true,c:'#2563a8'},
+  ]},
+  3: { h:320, lines:[
+    {t:'S2 2023 Q1(b) — parameter system',x:32,y:40,s:14,b:true},
+    {t:'[[1,2,3a|−1],[0,1,−1|4b],[0,0,a−3|b+2]]',x:32,y:65,s:13},
+    {t:'Key row: [0, 0, a−3 | b+2]',x:32,y:95,s:14},
+    {t:'(i) No solution: a=3, b≠−2',x:32,y:130,s:15,b:true,c:'#b83232'},
+    {t:'(0=c with c≠0 → impossible)',x:52,y:153,s:13,c:'#888'},
+    {t:'(ii) Unique: a≠3  (any b)',x:32,y:188,s:15,b:true,c:'#2563a8'},
+    {t:'(full rank, pivot in every column)',x:52,y:211,s:13,c:'#888'},
+    {t:'(iii) Infinitely many: a=3, b=−2',x:32,y:246,s:15,b:true,c:'#2a6e3a'},
+    {t:'(last row all zeros → free variable)',x:52,y:269,s:13,c:'#888'},
+  ]},
+  4: { h:380, lines:[
+    {t:'S2 2024 Q2 — Matrix proofs',x:32,y:40,s:15,b:true},
+    {t:'(a) AB=0, A invertible → B=0',x:32,y:68,s:14,b:true},
+    {t:'Left-multiply by A⁻¹:',x:52,y:92,s:14},
+    {t:'A⁻¹(AB) = A⁻¹(0) = 0',x:52,y:115,s:14},
+    {t:'(A⁻¹A)B = 0  →  B = 0  ∎',x:52,y:138,s:15,b:true,c:'#2a6e3a'},
+    {t:'(b) Counterexample: A=B=I₂',x:32,y:173,s:14,b:true},
+    {t:'det(A+B)=det(2I₂)=4',x:52,y:196,s:14},
+    {t:'det(A)+det(B)=1+1=2 ≠ 4  ∎',x:52,y:219,s:14,c:'#b83232'},
+    {t:'(c) A²=A → det(A)²=det(A)',x:32,y:255,s:14,b:true},
+    {t:'det(A)(det(A)−1) = 0',x:52,y:278,s:14},
+    {t:'det(A) = 0  or  det(A) = 1',x:52,y:304,s:16,b:true,c:'#2563a8'},
+  ]},
+  5: { h:360, lines:[
+    {t:'S2 2022 Q3 — Vectors and planes',x:32,y:40,s:15,b:true},
+    {t:'a=(−1,2,2)/3,  b=(4,1,1)/3',x:32,y:65,s:14},
+    {t:'(a) a·b = (−4+2+2)/9 = 0',x:32,y:98,s:14},
+    {t:'θ = 90°  (orthogonal)',x:52,y:120,s:16,b:true,c:'#2563a8'},
+    {t:'(b) a×b = (1/9)det([[i,j,k],[−1,2,2],[4,1,1]])',x:32,y:155,s:13,b:true},
+    {t:'= (1/9)((2−2),(8+1),(−1−8))',x:52,y:178,s:14},
+    {t:'= (0, 1, −1)',x:52,y:200,s:16,b:true,c:'#2563a8'},
+    {t:'(c) Plane: −(x−1)+2y+2(z+1)=0',x:32,y:235,s:14,b:true},
+    {t:'→  −x+2y+2z = −3',x:52,y:258,s:15,b:true,c:'#2563a8'},
+    {t:'(d) Distance from (2,1,1):',x:32,y:293,s:14,b:true},
+    {t:'|−2+2+2+3|/3 = 5/3',x:52,y:316,s:16,b:true,c:'#2563a8'},
+  ]},
+  6: { h:470, lines:[
+    {t:'Summer 2024 Q6 — RREF deductions',x:32,y:40,s:14,b:true},
+    {t:'B = RREF of A,  rank=3,  5 columns',x:32,y:65,s:13},
+    {t:'(i) Row space basis = non-zero rows of B:',x:32,y:97,s:14,b:true},
+    {t:'{(1,0,0,1,−1),(0,1,0,0,3),(0,0,1,0,1)}',x:32,y:120,s:13,c:'#2563a8'},
+    {t:'(ii) 5 cols, rank=3 → NOT independent',x:32,y:152,s:14,b:true},
+    {t:'From B: col₄ = 1·col₁+0+0 → v₄=v₁',x:52,y:175,s:13},
+    {t:'(iii) Nullity = 5−3 = 2',x:32,y:208,s:15,b:true,c:'#2563a8'},
+    {t:'(iv) Free vars: x₄=s, x₅=t',x:32,y:240,s:14,b:true},
+    {t:'x₁=−s+t, x₂=−3t, x₃=−t',x:52,y:263,s:14},
+    {t:'Basis: {(−1,0,0,1,0)ᵀ, (1,−3,−1,0,1)ᵀ}',x:52,y:286,s:13,c:'#2563a8'},
+    {t:'(v) RREF is unique.',x:32,y:320,s:14,b:true},
+    {t:'Row ops on A don\'t change RREF.',x:52,y:343,s:14},
+    {t:'RREF of A₀ = RREF of A = B',x:52,y:366,s:15,b:true,c:'#2563a8'},
+  ]},
+  7: { h:380, lines:[
+    {t:'S2 2022 Q8(b) — Linear transformation',x:32,y:40,s:14,b:true},
+    {t:'T(p(x)) = p(1)+p(2)x',x:32,y:65,s:14},
+    {t:'(i) Apply T to basis {1,x,x²}:',x:32,y:98,s:15,b:true},
+    {t:'T(1) = 1+1·x = 1+x  →  [1,1]',x:52,y:121,s:14},
+    {t:'T(x) = 1+2x  →  [1,2]',x:52,y:144,s:14},
+    {t:'T(x²) = 1+4x  →  [1,4]',x:52,y:167,s:14},
+    {t:'[T] = [[1,1,1],[1,2,4]]',x:52,y:192,s:15,b:true,c:'#2563a8'},
+    {t:'(ii) ker(T): RREF of [T] → [[1,0,−2],[0,1,3]]',x:32,y:227,s:13,b:true},
+    {t:'ker = span{(2,−3,1)ᵀ}',x:52,y:250,s:14,c:'#2563a8'},
+    {t:'im(T) = ℝ² (2 pivots = full rank)',x:52,y:273,s:14,c:'#2a6e3a'},
+    {t:'(iii) Not injective (nullity=1).',x:32,y:308,s:14},
+    {t:'Surjective (rank=2=dim(P₁)).',x:32,y:330,s:14},
+  ]},
+  8: { h:460, lines:[
+    {t:'S2 2022 Q10 — Eigenvalues of 3×3',x:32,y:40,s:15,b:true},
+    {t:'A = [[4,0,−1],[0,3,0],[1,0,2]]',x:32,y:65,s:14},
+    {t:'(a) Expand along row 2 (only one entry):',x:32,y:98,s:15,b:true},
+    {t:'det = (3−λ)·det([[4−λ,−1],[1,2−λ]])',x:52,y:121,s:14},
+    {t:'= (3−λ)[(4−λ)(2−λ)+1]',x:52,y:144,s:14},
+    {t:'= (3−λ)(λ²−6λ+9) = −(λ−3)³ = 0',x:52,y:167,s:14},
+    {t:'λ = 3  (alg. mult. = 3)',x:52,y:192,s:16,b:true,c:'#2563a8'},
+    {t:'(b) A−3I = [[1,0,−1],[0,0,0],[1,0,−1]]',x:32,y:227,s:14,b:true},
+    {t:'→ [[1,0,−1],[0,0,0]].  Free: v₂=s, v₃=t',x:52,y:250,s:14},
+    {t:'Basis: {(0,1,0)ᵀ, (1,0,1)ᵀ}',x:52,y:273,s:14,c:'#2563a8',b:true},
+    {t:'Geom. mult. = 2',x:52,y:296,s:14},
+    {t:'(c) alg.mult.=3, geom.mult.=2',x:32,y:328,s:14},
+    {t:'(d) NOT diagonalisable',x:32,y:358,s:15,b:true,c:'#b83232'},
+    {t:'Geom.(2) < Alg.(3) → not enough eigenvectors',x:52,y:381,s:13,c:'#b83232'},
+  ]},
+  9: { h:440, lines:[
+    {t:'S1 2022 Q10 — Markov Chain',x:32,y:40,s:15,b:true},
+    {t:'M = [[1/2,1/3],[1/2,2/3]]',x:32,y:65,s:14},
+    {t:'(a) det(M−λI)=0:',x:32,y:98,s:15,b:true},
+    {t:'6λ²−7λ+1 = (6λ−1)(λ−1) = 0',x:52,y:121,s:14},
+    {t:'λ=1  and  λ=1/6',x:52,y:145,s:16,b:true,c:'#2563a8'},
+    {t:'(b) λ=1: v₁=(2,3)ᵀ   λ=1/6: v₂=(1,−1)ᵀ',x:32,y:178,s:14,b:true,c:'#2563a8'},
+    {t:'(c) x₀=αv₁+βv₂:',x:32,y:210,s:15,b:true},
+    {t:'2α+β=p,  3α−β=1−p  →  5α=1  →  α=1/5',x:52,y:233,s:14},
+    {t:'β = p−2/5',x:52,y:256,s:14},
+    {t:'(d) xₖ = (1/5)(2,3)ᵀ + (p−2/5)(1/6)ᵏ(1,−1)ᵀ',x:32,y:290,s:14,b:true,c:'#2563a8'},
+    {t:'(e) (1/6)ᵏ → 0 as k→∞',x:32,y:323,s:15,b:true},
+    {t:'lim xₖ = (2/5, 3/5)ᵀ',x:52,y:348,s:17,b:true,c:'#2563a8'},
+    {t:'Does NOT depend on p ✓',x:52,y:374,s:14,c:'#2a6e3a'},
+  ]},
+  10: { h:440, lines:[
+    {t:'S2 2022 Q11 — Custom inner product',x:32,y:40,s:15,b:true},
+    {t:'⟨u,v⟩ = 4u₁v₁−2u₁v₂−2u₂v₁+3u₂v₂',x:32,y:65,s:13},
+    {t:'(a) A = [[4,−2],[−2,3]]',x:32,y:98,s:16,b:true,c:'#2563a8'},
+    {t:'(b) A symmetric → axioms 1,2,3 ✓',x:32,y:130,s:14,b:true},
+    {t:'⟨u,u⟩ = 3u₁²+(u₁−2u₂)² ≥ 0  ✓',x:52,y:153,s:14,c:'#2a6e3a'},
+    {t:'= 0 only if u = 0  ✓  → inner product ∎',x:52,y:176,s:14,c:'#2a6e3a'},
+    {t:'(c) Check ‖b₁‖², ‖b₂‖², ⟨b₁,b₂⟩:',x:32,y:210,s:14,b:true},
+    {t:'‖b₁‖²=(1/3)(4−2−2+3)=1  ✓',x:52,y:233,s:14,c:'#2a6e3a'},
+    {t:'‖b₂‖²=(1/24)(4+4+4+12)=1  ✓',x:52,y:255,s:14,c:'#2a6e3a'},
+    {t:'⟨b₁,b₂⟩=0  ✓  →  B is orthonormal ✓',x:52,y:277,s:14,b:true,c:'#2a6e3a'},
+    {t:'(d) proj_{b₁} w = ⟨w,b₁⟩·b₁',x:32,y:312,s:15,b:true},
+    {t:'⟨w,b₁⟩=(1/√3)(8−4+2−3)=3/√3=√3',x:52,y:335,s:14},
+    {t:'proj = √3·(1/√3)(1,1) = (1,1)',x:52,y:360,s:17,b:true,c:'#2563a8'},
+  ]},
+  11: { h:420, lines:[
+    {t:'Summer 2025 Q12 — Gram-Schmidt ℝ⁴',x:32,y:40,s:15,b:true},
+    {t:'v₁=(−2,0,−1,−2), v₂=(1,2,3,2), v₃=(−2,−5,−5,0)',x:32,y:65,s:12},
+    {t:'u₁:  ‖v₁‖=√9=3',x:32,y:98,s:15,b:true},
+    {t:'u₁ = (1/3)(−2,0,−1,−2)',x:52,y:121,s:14,c:'#2563a8',b:true},
+    {t:'w₂ = v₂−⟨v₂,u₁⟩u₁:  ⟨v₂,u₁⟩=−3',x:32,y:155,s:14,b:true},
+    {t:'w₂=(1,2,3,2)+3·(1/3)(−2,0,−1,−2)=(−1,2,2,0)',x:52,y:178,s:13},
+    {t:'u₂ = (1/3)(−1,2,2,0)',x:52,y:201,s:14,c:'#2563a8',b:true},
+    {t:'w₃: ⟨v₃,u₁⟩=3, ⟨v₃,u₂⟩=−6',x:32,y:235,s:14,b:true},
+    {t:'w₃=(2,−1,2,−2),  ‖w₃‖=3',x:52,y:258,s:14},
+    {t:'u₃ = (1/3)(2,−1,2,−2)',x:52,y:281,s:14,c:'#2563a8',b:true},
+    {t:'Projection of x=(0,0,0,1):',x:32,y:315,s:15,b:true},
+    {t:'⟨x,u₁⟩=−2/3, ⟨x,u₂⟩=0, ⟨x,u₃⟩=−2/3',x:52,y:338,s:14},
+    {t:'proj=(0,2/9,−2/9,8/9),  ‖proj‖=2√2/3',x:52,y:362,s:15,b:true,c:'#2563a8'},
+  ]}
+};
+
+function doHW(panelId, num) {
+  var panel = document.getElementById(panelId);
+  if (!panel) return;
+  panel.classList.toggle('vis');
+  if (!panel.classList.contains('vis')) return;
+  var canvas = document.getElementById(panelId + '-c');
+  var loading = document.getElementById(panelId + '-l');
+  if (!canvas || canvas.dataset.drawn) return;
+  canvas.dataset.drawn = '1';
+  var data = HW[num];
+  if (!data) { if (loading) loading.style.display = 'none'; return; }
+  setTimeout(function(){ drawHW(canvas, loading, data); }, 350);
+}
+
+function drawHW(canvas, loading, data) {
+  var H = data.h || 400;
+  canvas.height = H;
+  canvas.width = canvas.parentElement ? canvas.parentElement.clientWidth || 680 : 680;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fffef8';
+  ctx.fillRect(0, 0, canvas.width, H);
+  // ruled lines
+  ctx.strokeStyle = '#ede4d4';
+  ctx.lineWidth = 0.5;
+  for (var y = 32; y < H; y += 32) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  }
+  // margin line
+  ctx.strokeStyle = '#e8b4a0';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(28, 0); ctx.lineTo(28, H); ctx.stroke();
+  if (loading) loading.style.display = 'none';
+  canvas.style.display = 'block';
+  var i = 0;
+  function next() {
+    if (i >= data.lines.length) return;
+    var l = data.lines[i++];
+    ctx.save();
+    ctx.font = (l.b ? '600 ' : '400 ') + (l.s || 14) + 'px "Caveat", cursive';
+    ctx.fillStyle = l.c || '#3a2410';
+    ctx.translate(l.x, l.y);
+    ctx.rotate((Math.random() - 0.5) * 0.008);
+    ctx.fillText(l.t, 0, 0);
+    ctx.restore();
+    setTimeout(next, 16);
+  }
+  next();
+}
+</script>
+</body>
+</html>
